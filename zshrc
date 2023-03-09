@@ -76,6 +76,27 @@ function mkcd {
   mkdir -p "$1" && cd "$1";
 }
 
+##############
+# BASIC SETUP
+##############
+typeset -U PATH
+autoload colors; colors;
+
+setopt prompt_subst
+setopt glob_dots
+
+## Colored manpages
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;91m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;93m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;92m'
+
+## Load direnv
+has_program direnv && eval "$(direnv hook zsh)"
+
 #########
 # PROMPT
 #########
@@ -96,9 +117,9 @@ local dir_info_color="%{$fg_bold[grey]%}"
 local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 local prompt_normal="φ %{$reset_color%}"
 local prompt_jobs="%{$fg_bold[red]%}φ %{$reset_color%}"
-local prompt_direnv="\$(is_direnv_dir && echo \"*\")"
+# local prompt_direnv="\$(is_direnv_dir && echo \"*\")"
 
-PROMPT='${dir_info}$(prompt_direnv)$(git_prompt_info) %(1j.$prompt_jobs.$prompt_normal)'
+PROMPT='${dir_info}$(git_prompt_info) %(1j.$prompt_jobs.$prompt_normal)'
 
 # Change cursor style depending on vim mode
 function zle-keymap-select {
@@ -120,27 +141,6 @@ _fix_cursor() {
    echo -ne '\e[5 q'
 }
 precmd_functions+=(_fix_cursor)
-
-##############
-# BASIC SETUP
-##############
-typeset -U PATH
-autoload colors; colors;
-
-setopt prompt_subst
-setopt glob_dots
-
-## Colored manpages
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;91m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;93m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;92m'
-
-## Load direnv
-has_program direnv && eval "$(direnv hook zsh)"
 
 #############
 # COMPLETION

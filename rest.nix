@@ -16,8 +16,7 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
-    autoCd = true;
-
+    autocd = true;
     history = {
       expireDuplicatesFirst = true;
       extended = true;
@@ -54,6 +53,7 @@
     enable = true;
     terminal = "screen-256color";
     secureSocket = false;
+    disableConfirmationPrompt = true;
     extraConfig = builtins.readFile ./tmux.conf;
   };
 

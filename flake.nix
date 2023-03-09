@@ -31,7 +31,7 @@
 
       homeConfigurations = {
         "behlock@mini" = withArch "aarch64-darwin";
-        "wbehlock@pro" = withArch "x86_64-darwin";
+        "wbehlock" = withArch "x86_64-darwin";
       };
     };
 }
