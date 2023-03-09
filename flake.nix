@@ -15,23 +15,22 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nix-index-database, ... }: 
-    let
-      withArch = arch:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${arch};
-          modules = [ ./home.nix nix-index-database.hmModules.nix-index ];
-        };
-    in {
-      defaultPackage = {
-        x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
-        aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-        aarch64-linux = home-manager.defaultPackage.aarch64-linux;
+  outputs = { nixpkgs, home-manager, nix-index-database, ... }: {
+    defaultPackage = {
+      x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
+      aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
+    };
+
+    homeConfigurations."wbehlock" =
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+        modules = [ ./home-wbehlock.nix ];
       };
 
-      homeConfigurations = {
-        "behlock@mini" = withArch "aarch64-darwin";
-        "wbehlock" = withArch "x86_64-darwin";
+    homeConfigurations."behlock@Mac-mini" =
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [ ./home-behlock.nix ];
       };
     };
 }
