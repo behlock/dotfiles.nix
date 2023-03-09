@@ -1,393 +1,308 @@
-"*****************************************************************************
-"" GLOBAL SETTINGS
-"*****************************************************************************
+" General settings {{{
+set encoding=utf-8
+set t_Co=256                      " moar colors
+set clipboard=unnamedplus         " use system clipboard
+set nocompatible                  " nocompatible is good for humans
+syntax enable                     " enable syntax highlighting...
+filetype plugin indent on         " depending on filetypes...
+runtime macros/matchit.vim        " with advanced matching capabilities
+set pastetoggle=<F12>             " for pasting code into Vim
+set timeout tm=1000 ttm=10        " fix slight delay after pressing Esc then O
+set autoread                      " auto load files if vim detects change
+set autowrite                     " auto write files when moving around
+set nobackup                      " disable backup files...
+set noswapfile                    " and swap files
+set shortmess+=I                  " disable intro message
 
-let g:mapleader = " "                   " Set leader key to space
+" Style
+set termguicolors
+set background=dark
+silent! color gruvbox8
+set number                        " line numbers are cool
+set relativenumber                " and relative even cooler
+set ruler                         " show the cursor position all the time
+set nocursorline                  " disable cursor line
+set showcmd                       " display incomplete commands
+set novisualbell                  " no flashes please
+set scrolloff=3                   " provide some context when editing
+set hidden                        " allow backgrounding buffers without writing them, and
+                                  " remember marks/undo for backgrounded buffers
+" Mouse
+set mouse=a                       " we love the mouse
+if !has('nvim')
+  set ttymouse=xterm2             " and we want it to be fast
+endif
+set mousehide                     " but hide it when we're writing
 
-set nocompatible
-syntax enable                           " Enables syntax highlighing
-filetype plugin indent on               " Turns on 'detection', 'plugin' and 'indent' at once
+" Whitespace
+set wrap                          " wrap long lines
+set tabstop=2                     " a tab is two spaces
+set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set softtabstop=2                 " when deleting, treat spaces as tabs
+set expandtab                     " use spaces, not tabs
+set list                          " show invisible characters
+set backspace=indent,eol,start    " backspace through everything in insert mode
+set autoindent                    " keep indentation level when no indent is found
 
-set hidden                              " Required to keep multiple buffers open
-set nowrap                              " Display long lines as just one line
-set encoding=utf-8                      " The encoding displayed
-set pumheight=10                        " Makes popup menu smaller
-set fileencoding=utf-8                  " The encoding written to file
-set ruler              			        " Show the cursor position all the time
-set cmdheight=2                         " More space for displaying messages
-set iskeyword+=-                      	" Treat dash separated words as a word text object
-set mouse=a                             " Enable your mouse
-set splitbelow                          " Horizontal splits will automatically be below
-set splitright                          " Vertical splits will automatically be to the right
-set tabstop=4 softtabstop=4             " Insert 4 spaces for a tab
-set shiftwidth=4                        " Change the number of space characters inserted for indentation
-set shiftround                          " >> indents to next multiple of 'shiftwidth'
-set smarttab                            " Makes tabbing smarter (will realize you have 2 vs 4)
-set expandtab                           " Converts tabs to spaces
-set smartindent                         " Makes indenting smart
-set autoindent                          " Good auto indent
-set laststatus=0                        " Always display the status line
-set display=lastline                    " Show as much as possible of the last line
-set number                              " Line numbers
-set relativenumber                      " Relative line numbers
-set cursorline                          " Enable highlighting of the current line
-set showtabline=4                       " Always show tabs
-set nobackup                            " This is recommended by coc
-set nowritebackup                       " This is recommended by coc
-set updatetime=100                      " Faster completion
-set timeoutlen=500                      " By default timeoutlen is 1000 ms
-set clipboard=unnamedplus               " Copy paste between vim and everything else
-set autochdir                           " Your working directory will always be the same as your working directory
-set ignorecase                          " Ignore case when searching through file
-set backspace=indent,eol,start          " To make backspace work normally
-set colorcolumn=80                      " Grey column
-set completeopt=menuone,noinsert,noselect " No autoselect from autocomplete
-set noerrorbells                        " No bell sound
-set nu                                  " Activate line numbering
-set smartcase                           " Search with both cases
-set undodir=~/.config/nvim/undodir      " Set undodir directory
-set undofile                            " Set undofile
-set incsearch                           " Search as characters are entered
-set hlsearch                            " Highlight matches
-set modifiable                          " Make buffer modifiable for NERDTree
-set spell spelllang=en_gb               " Spellcheck language
-set showmode                            " Show current mode in command-line
-set showcmd                             " Show command in bottom bar
-set wildmenu                            " Visual autocomplete for command menu
-set ttyfast                             " Faster redrawing
-set lazyredraw                          " Redraw only when we need to
-set showmatch                           " Highlight matching bracket
-set shortmess+=c                        " Don't give ins-completion-menu messages
-set signcolumn=yes                      " Always show signcolumns
-set wrapscan                            " Searches wrap around end-of-file
-set report      =0                      " Always report changed lines
-set synmaxcol   =200                    " Only highlight the first 200 columns
+" Wild life
+set wildmenu                      " wildmenu gives autocompletion to vim
+set wildmode=list:longest,full    " autocompletion shouldn't jump to the first match
+set wildignore+=*.scssc,*.sassc,*.csv,*.pyc,*.xls,*.rbi
+set wildignore+=tmp/**,node_modules/**,bower_components/**
 
-"*****************************************************************************
-"" PLUGINS
-"*****************************************************************************
+" List chars
+set listchars=""                  " reset the listchars
+set listchars=tab:▸\ ,eol:¬       " a tab should display as "▸ ", end of lines as "¬"
+set listchars+=trail:.            " show trailing spaces as dots
+set listchars+=extends:>          " the character to show in the last column when wrap is
+                                  " off and the line continues beyond the right of the screen
+set listchars+=precedes:<         " the character to show in the first column when wrap is
+                                  " off and the line continues beyond the left of the screen
+set fillchars+=vert:\             " set vertical divider to empty space
 
-call plug#begin('~/.vim/plugged')
+" Searching
+set hlsearch                      " highlight matches...
+nohlsearch                        " but don't highlight last search when reloading
+set incsearch                     " incremental searching
+set ignorecase                    " searches are case insensitive...
+set smartcase                     " unless they contain at least one capital letter
 
-" Themes
-Plug 'gruvbox-community/gruvbox'
-Plug 'arzg/vim-colors-xcode'
-Plug 'kvrohit/rasmus.nvim'
+" Windows
+set splitright                    " create new horizontal split on the right
+set splitbelow                    " create new vertical split below the current window
 
-" LSP/Autocomplete
-Plug 'neovim/nvim-lspconfig'
-Plug 'godlygeek/tabular'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'rust-lang/rust.vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Status line
+set laststatus=2
+" }}}
 
-" Git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'APZelos/blamer.nvim'
-Plug 'lewis6991/gitsigns.nvim'
+" FileType settings {{{
+if has("autocmd")
+  " in Makefiles use real tabs, not tabs expanded to spaces
+  augroup filetype_make
+    au!
+    au FileType make setl ts=8 sts=8 sw=8 noet
+  augroup END
 
-" Trees
-Plug 'mbbill/undotree'
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-Plug 'kyazdani42/nvim-web-devicons'
+  " make sure all markdown files have the correct filetype set and setup wrapping
+  augroup filetype_markdown
+    au!
+    au FileType markdown setl tw=75 | syntax sync fromstart
+    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+  augroup END
 
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
+  " disable endwise for anonymous functions
+  augroup filetype_elixir_endwise
+    au!
+    au BufNewFile,BufRead *.{ex,exs}
+          \ let b:endwise_addition = '\=submatch(0)=="fn" ? "end)" : "end"'
+  augroup END
 
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope-file-browser.nvim'
+  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+  augroup filetype_python
+    au!
+    au FileType python setl sts=4 ts=4 sw=4
+  augroup END
 
-" Comments
-Plug 'tpope/vim-commentary'
+  " follow Elm conventions
+  augroup filetype_elm
+    au!
+    au FileType elm setl sts=4 ts=4 sw=4
+  augroup END
 
-" Brackets
-Plug 'frazrepo/vim-rainbow'
-Plug 'Raimondi/delimitMate'
+  " delete Fugitive buffers when they become inactive
+  augroup filetype_fugitive
+    au!
+    au BufReadPost fugitive://* set bufhidden=delete
+  augroup END
 
-" Tmux
-Plug 'christoomey/vim-tmux-navigator'
+  " fold automatically with triple {
+  augroup filetype_vim
+    au!
+    au FileType vim,javascript,python,c setlocal foldmethod=marker nofoldenable
+  augroup END
 
-call plug#end()
+  " enable <CR> in command line window and quickfix
+  augroup enable_cr
+    au!
+    au CmdwinEnter * nnoremap <buffer> <CR> <CR>
+    au BufWinEnter quickfix nnoremap <buffer> <CR> <CR>
+  augroup END
 
-"*****************************************************************************
-"" THEME
-"*****************************************************************************
+  " disable automatic comment insertion
+  augroup auto_comments
+    au!
+    au FileType * setlocal formatoptions-=ro
+  augroup END
 
-" let g:gruvbox_contrast_dark = 'hard'
-" colorscheme gruvbox
+  " disable numbers in terminal windows
+  if has('nvim')
+    augroup terminal_numbers
+      au!
+      au TermOpen * setlocal nonumber
+    augroup END
+  endif
 
-" colorscheme xcodedark
-" colorscheme xcodedarkhc
-"
+  " run all formatters
+  if !exists('g:vscode')
+    augroup fmt
+      au!
+      au BufWritePre * Neoformat
+    augroup END
 
-"*****************************************************************************
-"" MAPPINGS
-"*****************************************************************************
+    " remember last location in file, but not for commit messages,
+    " or when the position is invalid or inside an event handler,
+    " or when the mark is in the first line, that is the default
+    " position when opening a file. See :help last-position-jump
+    augroup last_position
+      au!
+      au BufReadPost *
+        \ if &filetype !~ '^git\c' && line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+    augroup END
+  endif
+endif
+" }}}
 
-" Source vim config
-nnoremap <leader>sv :source $MYVIMRC<CR>
+" Mappings {{{
+let mapleader=','
 
-" Easier way to escape
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-" Activate rainbow brackets
-let g:rainbow_active = 1
-
-" Disable tmux navigator when zooming the Vim pane
-let g:tmux_navigator_disable_when_zoomed = 1
-
-" Toggle trees
-nnoremap <leader>t :NERDTreeToggle<CR>
-nnoremap <leader>u :UndotreeShow<CR>
-" Find current buffer in Tree
-map <leader>r :NERDTreeFind<cr>
-
-"" NERDTree configuration
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeChDirMode=2
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
-
-" TAB in general mode will move to next buffer
-nnoremap <TAB> :bnext<CR>
-" SHIFT-TAB will go back
-nnoremap <S-TAB> :bprevious<CR>
-
-" Save buffer
-nnoremap <leader>s :w<CR>
-" Unload current bugger
-nnoremap <leader>w :bd<CR>
-" Close all buffers except current one
-nnoremap <leader>wk :%bd\|e#<CR>
-" Save all buffers and quit
-nnoremap <leader>q :wqa<CR>
-
-" Use option + jk to move lines down/up
-nnoremap ∆  :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
-vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv
-
-" Resize windows
-nnoremap <leader><Down> :resize -10<CR>
-nnoremap <leader><Left> :vertical resize +40<CR>
-nnoremap <leader><Right> :vertical resize -40<CR>
-nnoremap <leader><Up> :resize +10<CR>
-
-" Align blocks and keep them selected
-vnoremap < <gv
-vnoremap > >gv
-
-" Turn off search highlight
-nnoremap <leader>h :nohlsearch<CR>
-
-" Insert blank line below/above current in normal mode
-map <leader><Enter> o<ESC>
-map <leader><S-Enter> O<ESC>
-
-" Remove trailing whitespaces
-command! FixWhitespace :%s/\s\+$//e
-
-" Make Y behave like the other capital letters
+" Y u no consistent?
 nnoremap Y y$
 
-" Keep stuff centered
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap J mzJ`z
+" open vimrc and reload it
+nnoremap <Leader>vv :vsplit $HOME/.config/nixpkgs/vimrc<CR>
+nnoremap <Leader>sv :source $HOME/.config/nixpkgs/vimrc<CR>
 
-" Moving text
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" disable man page for word under cursor
+nnoremap K <Nop>
 
-" Git hunk
-nnoremap <leader>u :GitGutterUndoHunk <CR>
+" clear the search buffer when hitting return
+nnoremap <CR> :nohlsearch<CR>
 
-"*****************************************************************************
-"" LSP
-"*****************************************************************************
+" expand %% to current directory
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+nmap <Leader>e :e %%
 
-" let g:ycm_semantic_triggers = {
-"      \ 'elm' : ['.'],
-"      \}
+" easy way to switch between latest files
+nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader>vs :execute "vsplit " . bufname("#")<CR>
+nnoremap <Leader>sp :execute "split " . bufname("#")<CR>
 
-let g:rustfmt_autosave = 1
-let g:black_virtualenv = '~/.local/pipx/venvs/black'
+" find merge conflict markers
+nnoremap <silent> <Leader>cf <Esc>/\v^[<=>]{7}( .*\|$)<CR>
 
-lua << EOF
-local nvim_lsp = require('lspconfig')
+" show colorcolumn
+nnoremap <silent> <Leader>sc :set colorcolumn=80<CR>
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+" copy current path
+nnoremap <silent> <Leader>p :let @* = expand("%")<CR>
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+" easy substitutions
+nnoremap <Leader>r :%s///gc<Left><Left><Left>
+nnoremap <Leader>R :%s:::gc<Left><Left><Left>
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+" remove whitespaces and windows EOL
+command! KillWhitespace :normal :%s/\s\+$//e<CR><C-O><CR>
+command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
+nnoremap <Leader>kw :KillWhitespace<CR>
+nnoremap <Leader>kcm :KillControlM<CR>
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+" easy global search
+nnoremap <C-S> :Rg <C-R><C-W><CR>
+vnoremap <C-S> y<Esc>:Rg <C-R>"<CR>
 
+" easier navigation between split windows
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+
+" disable cursor keys in normal mode
+nnoremap <Left>  :echo "no!"<CR>
+nnoremap <Right> :echo "no!"<CR>
+nnoremap <Up>    :echo "no!"<CR>
+nnoremap <Down>  :echo "no!"<CR>
+
+" Plugins {{{
+if exists('g:vscode')
+  let g:ale_enabled = 0 " disable ale
+  let g:loaded_vimux = 1 " disable vimux
+  let g:goldenview__enable_at_startup = 0 " disable goldenview
+  nnoremap <Leader>f :call VSCodeNotify("workbench.action.quickOpen")<CR>
+  nnoremap <Leader>p :call VSCodeNotify("copyRelativeFilePath")<CR>
+else
+  nnoremap <Leader>gs  :Gstatus<CR>
+  nnoremap <Leader>gd  :Gdiff<CR>
+  nnoremap <Leader>gci :Gcommit<CR>
+  nnoremap <Leader>gw  :Gwrite<CR>
+  nnoremap <Leader>gr  :Gread<CR>
+  nnoremap <Leader>gb  :Git blame<CR>
+  nnoremap <Leader>w :ALEDetail<CR>
+  nnoremap <Leader>x :ALENextWrap<CR>
+  nnoremap <Leader>dd :ALEGoToDefinition<CR>
+  nnoremap <Leader>dt :ALEGoToTypeDefinition<CR>
+  nnoremap <Leader>f :Files<CR>
+  nnoremap <Leader>b :Buffers<CR>
+  nnoremap <Leader>m :History<CR>
+  nnoremap <silent> <S-left> <Esc>:bp<CR>
+  nnoremap <silent> <S-right> <Esc>:bn<CR>
+  nnoremap <Leader>a <Esc>:Rg<space>
+  nnoremap <Leader>u :MundoToggle<CR>
+  nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
+  nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
+  nmap p <plug>(YoinkPaste_p)
+  nmap P <plug>(YoinkPaste_P)
+  nmap <C-n> <plug>(YoinkPostPasteSwapBack)
+  nmap <C-p> <plug>(YoinkPostPasteSwapForward)
+
+  let g:UltiSnipsSnippetDirectories = ['~/.config/nixpkgs/snippets']
+  let g:ale_lint_on_insert_leave = 0
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_linters = {
+        \ 'nix': [],
+        \ 'typescript': ['tsserver'],
+        \ 'elm': ['make'] }
+  let g:fzf_layout = { 'down': '~30%' }
+  let g:goldenview__enable_default_mapping = 0
+  let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
+  let g:loaded_python_provider = 1
+  let g:mundo_right = 1
+  let g:neoformat_nix_nixfmt = {
+    \ 'exe': 'nixfmt',
+    \ 'args': ['--width', '80'],
+    \ 'stdin': 1,
+    \ }
+  let g:neoformat_enabled_json = []
+  let g:neoformat_enabled_nix = ['nixfmt']
+  let g:neoformat_enabled_yaml = []
+  let g:neoformat_only_msg_on_error = 1
+  let g:test#preserve_screen = 1
+  let g:test#strategy = "vimux"
+  let g:tmux_navigator_disable_when_zoomed = 1
+  let g:yoinkIncludeDeleteOperations = 1
+  let g:yoinkSavePersistently = 1
+  let g:yoinkSwapClampAtEnds = 0
+
+  function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
+  endfunction
+
+  let g:fzf_action = {
+        \ 'ctrl-q': function('s:build_quickfix_list'),
+        \ 'ctrl-t': 'tab split',
+        \ 'ctrl-x': 'split',
+        \ 'ctrl-v': 'vsplit' }
+endif
+" }}}
+
+" Clipboard integration in spin
+if $SPIN == 1
+    let g:clipboard = {
+        \ 'name': 'pbcopy',
+        \ 'copy': {'+': 'pbcopy', '*': 'pbcopy'},
+        \ 'paste': {'+': 'pbpaste', '*': 'pbpaste'},
+        \ 'cache_enabled': 1 }
 end
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'bashls', 'clangd', 'cssls', 'dockerls',
-                  'eslint', 'gopls', 'graphql', 'hls', 'html',
-                  'java_language_server', 'jsonls', 'jsonnet_ls', 'pylsp',
-                  'pyright', 'rnix', 'rust_analyzer', 'solidity_ls', 'sqlls',
-                  'terraformls', 'tsserver', 'vimls', 'yamlls'
-                }
-
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
-
---Enable (broadcasting) snippet capability for completion for css/html/json
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require'lspconfig'.cssls.setup {
-  capabilities = capabilities,
-}
-require'lspconfig'.html.setup {
-  capabilities = capabilities,
-}
-require'lspconfig'.jsonls.setup {
-  capabilities = capabilities,
-}
-
--- TELESCOPE
-local telescope = require('telescope')
-local telescopeConfig = require('telescope.config')
-telescope.load_extension('fzf')
-telescope.load_extension "file_browser"
-
--- Clone the default Telescope configuration
-local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-
--- I want to search in hidden/dot files.
-table.insert(vimgrep_arguments, "--hidden")
--- I don't want to search in the `.git` directory.
-table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!**/.git/*")
-
-telescope.setup {
-	defaults = {
-		vimgrep_arguments = vimgrep_arguments,
-	},
-	pickers = {
-		find_files = {
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		},
-	},
-    extensions = {
-      fzf = {
-        fuzzy = true,                    -- false will only do exact matching
-        override_generic_sorter = true,  -- override the generic sorter
-        override_file_sorter = true,     -- override the file sorter
-        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-      }
-  }
-}
-
--- https://github.com/nvim-telescope/telescope.nvim#file-pickers
-local builtin = require('telescope.builtin')
--- Lists files in your current working directory
-vim.keymap.set('n', '<leader>p', builtin.find_files, {})
--- Search for a string in your current working directory and get results live as you type, respects .gitignore
-vim.keymap.set('n', '<leader>ff', builtin.live_grep, {})
--- Searches for the string under your cursor in your current working directory
-vim.keymap.set('n', '<leader>ft', builtin.grep_string, {})
--- Lists open buffers in current neovim instance
-vim.keymap.set('n', '<leader>b', builtin.buffers, {})
--- Open File Browser
-vim.keymap.set('n', '<leader>fb', ":Telescope file_browser <CR>", { noremap = true })
-
--- GIT SIGNS
-require('gitsigns').setup()
-
--- THEME
-vim.g.rasmus_italic_comments = true
-vim.g.rasmus_bold_functions = true
-vim.cmd [[colorscheme rasmus]]
-
-EOF
-
-"*****************************************************************************
-"" FUZZY FINDER
-"*****************************************************************************
-
-" let g:fzf_action = {
-"   \ 'ctrl-t': 'tab split',
-"   \ 'ctrl-x': 'split',
-"   \ 'ctrl-v': 'vsplit' }
-
-" " See git status
-" map <leader>g :GFiles?<CR>
-" " See open buffers
-" " map <leader>b :Buffers<CR>
-" " Search for word under cursor with fzf
-" nnoremap <leader>rg :Rg <C-R>=expand("<cword>")<CR><CR>
-
-" let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-" let $FZF_DEFAULT_COMMAND='rg --files --hidden -g'
-
-" " Get text in files with Rg
-" command! -bang -nargs=* Rg
-"   \ call fzf#vim#grep(
-"   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"   \   fzf#vim#with_preview(), <bang>0)
-
-" " Ripgrep advanced
-"  function! RipgrepFzf(query, fullscreen)
-"   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-"   let initial_command = printf(command_fmt, shellescape(a:query))
-"   let reload_command = printf(command_fmt, '{q}')
-"   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-" endfunction
-
-" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-" " Git grep
-" command! -bang -nargs=* GGrep
-"   \ call fzf#vim#grep(
-"   \   'git grep --line-number '.shellescape(<q-args>), 0,
-"   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)}
