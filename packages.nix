@@ -2,6 +2,7 @@
   home.packages = [
     pkgs.bat # cat clone with syntax highlighting and Git integration
     pkgs.comma # run programs without installing them
+    pkgs.docker # need no introduction
     pkgs.htop # interactive process viewer
     pkgs.lazygit # git superpowers in terminal
     pkgs.jq # lightweight and flexible command-line JSON processor
