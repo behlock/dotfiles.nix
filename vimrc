@@ -165,7 +165,8 @@ endif
 " }}}
 
 " Mappings {{{
-let mapleader=','
+nnoremap <SPACE> <Nop>
+let mapleader=' '
 
 " Y u no consistent?
 nnoremap Y y$

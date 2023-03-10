@@ -3,6 +3,7 @@
     pkgs.bat # cat clone with syntax highlighting and Git integration
     pkgs.comma # run programs without installing them
     pkgs.htop # interactive process viewer
+    pkgs.lazygit # git superpowers in terminal
     pkgs.jq # lightweight and flexible command-line JSON processor
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.typescript # typed superset of JavaScript
