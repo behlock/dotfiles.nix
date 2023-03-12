@@ -11,6 +11,7 @@
     pkgs.nodejs # JavaScript runtime
     pkgs.ripgrep # grep alternative
     pkgs.nixfmt # format nix files
+    pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
     # pkgs.zsh-z-unstable # quickly jump to directories you use often
     pkgs.zsh-vi-mode # better vim mode in zsh
