@@ -220,10 +220,10 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
 " disable cursor keys in normal mode
-nnoremap <Left>  :echo "no!"<CR>
-nnoremap <Right> :echo "no!"<CR>
-nnoremap <Up>    :echo "no!"<CR>
-nnoremap <Down>  :echo "no!"<CR>
+" nnoremap <Left>  :echo "no!"<CR>
+" nnoremap <Right> :echo "no!"<CR>
+" nnoremap <Up>    :echo "no!"<CR>
+" nnoremap <Down>  :echo "no!"<CR>
 
 " Plugins {{{
 if exists('g:vscode')
@@ -233,7 +233,7 @@ if exists('g:vscode')
   nnoremap <Leader>f :call VSCodeNotify("workbench.action.quickOpen")<CR>
   nnoremap <Leader>p :call VSCodeNotify("copyRelativeFilePath")<CR>
 else
-  nnoremap <Leader>gs  :Gstatus<CR>
+  " nnoremap <Leader>gs  :Gstatus<CR>
   nnoremap <Leader>gd  :Gdiff<CR>
   nnoremap <Leader>gci :Gcommit<CR>
   nnoremap <Leader>gw  :Gwrite<CR>
