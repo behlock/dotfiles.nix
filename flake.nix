@@ -19,7 +19,7 @@
     defaultPackage = {
       x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
       aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-      aarch64-linux = home-manager.defaultPackage.aarch64-linux;
+      armv7l-linux = home-manager.defaultPackage.aarch64-linux;
     };
 
     homeConfigurations."wbehlock" =
@@ -36,7 +36,7 @@
 
     homeConfigurations."pi" =
       home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        pkgs = nixpkgs.legacyPackages.armv7l-linux;
         modules = [ ./home-pi.nix ];
       };
     };
