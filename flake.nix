@@ -19,7 +19,7 @@
     defaultPackage = {
       x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
       aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-      armv7l-linux = home-manager.defaultPackage.aarch64-linux;
+      armv7l-linux = home-manager.defaultPackage.armv7l-linux;
     };
 
     homeConfigurations."wbehlock" =
