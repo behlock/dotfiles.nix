@@ -194,6 +194,9 @@ bindkey '^ ' autosuggest-accept
 #########
 # ALIASES
 #########
+# Config
+alias config='vi $HOME/.config/nixpkgs'
+
 # Vim
 alias neoc='vi $HOME/PersonalProjects/dotfiles/init.vim'
 

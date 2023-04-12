@@ -171,6 +171,9 @@ let mapleader=' '
 " Y u no consistent?
 nnoremap Y y$
 
+" Save file
+nnoremap <Leader>s :w<CR>
+
 " open vimrc and reload it
 nnoremap <Leader>vv :vsplit $HOME/.config/nixpkgs/vimrc<CR>
 nnoremap <Leader>sv :source $HOME/.config/nixpkgs/vimrc<CR>
