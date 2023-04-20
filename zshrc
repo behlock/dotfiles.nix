@@ -239,6 +239,7 @@ alias lg='lazygit'
 
 # Projects
 ## Personal
+alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
 alias df='cd $HOME/PersonalProjects/dotfiles'
