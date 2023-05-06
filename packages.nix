@@ -10,7 +10,8 @@
     pkgs.jq # lightweight and flexible command-line JSON processor
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.typescript # typed superset of JavaScript
-    pkgs.nodejs # JavaScript runtime
+    pkgs.nodejs # javaScript runtime
+    pkgs.python3 # Python interpreter
     pkgs.ripgrep # grep alternative
     pkgs.nixfmt # format nix files
     pkgs.yt-dlp # download videos from youtube

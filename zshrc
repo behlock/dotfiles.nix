@@ -266,3 +266,6 @@ alias tf='terraform'
 
 ## Misc
 alias ytdl='yt-dlp -x -f bestaudio'
+
+# Path
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
