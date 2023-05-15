@@ -83,6 +83,14 @@ function mkcd {
   mkdir -p "$1" && cd "$1";
 }
 
+# rm many files discarding errors
+function rmmany {
+  for file in "$@"
+    do
+      rm -rf "$file" 2> /dev/null
+    done
+}
+
 ##############
 # BASIC SETUP
 ##############
@@ -244,7 +252,7 @@ alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
 alias df='cd $HOME/PersonalProjects/dotfiles'
-alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rm -rf *.THM *.LRV'
+alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
 alias opf='cd $HOME/PersonalProjects/onepointfive'
 alias bxyz='cd $HOME/PersonalProjects/behlock.xyz'
 alias ccg='cd $HOME/PersonalProjects/collective-creation-games'
