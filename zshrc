@@ -84,7 +84,7 @@ function mkcd {
 }
 
 # rm many files discarding errors
-function rmmany {
+function rmmany() {
   for file in "$@"
     do
       rm -rf "$file" 2> /dev/null
