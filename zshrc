@@ -60,8 +60,9 @@ function ex {
 }
 
 # find or create tmux session
+# make this function accept a name as argument
 function tat {
-  name=$(basename `pwd` | sed -e 's/\.//g')
+  name=$1
 
   if tmux ls 2>&1 | grep "$name"; then
     tmux attach -t "$name"
@@ -201,19 +202,19 @@ bindkey '^ ' autosuggest-accept
 # ALIASES
 #########
 # Config
-alias config='vi $HOME/.config/nixpkgs'
+alias config='cd $HOME/.config/nixpkgs'
 
 # Vim
-alias neoc='vi $HOME/PersonalProjects/dotfiles/init.vim'
+alias neoc='vi $HOME/.config/nixpkgs/vimrc'
 
 # Zsh
-alias zshrc='vi $HOME/PersonalProjects/dotfiles/zshrc'
-alias szh='source $HOME/PersonalProjects/dotfiles/zshrc'
+alias zshrc='vi $HOME/.config/nixpkgs/zshrc'
+alias szh='source $HOME/.config/nixpkgs/zshrc'
 
 # Tmux 
 alias tma='tmux attach -t'
 alias tmn='tmux new -s'
-alias tmuxconf='vi $HOME/PersonalProjects/dotfiles/tmux.conf'
+alias tmuxconf='vi $HOME/.config/nixpkgs/tmux.conf'
 
 # SSH
 alias sshconf='vi $HOME/PersonalProjects/dotfiles/sshconfig'
@@ -243,11 +244,12 @@ alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
 alias df='cd $HOME/PersonalProjects/dotfiles'
-alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rm -rf *.THM'
+alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rm -rf *.THM *.LRV'
 alias opf='cd $HOME/PersonalProjects/onepointfive'
 alias bxyz='cd $HOME/PersonalProjects/behlock.xyz'
 alias ccg='cd $HOME/PersonalProjects/collective-creation-games'
 alias resume='cd $HOME/PersonalProjects/resume'
+alias cord='cd $HOME/PersonalProjects/cord'
 
 ## Python
 alias py='python'
