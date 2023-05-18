@@ -210,7 +210,7 @@ bindkey '^ ' autosuggest-accept
 # ALIASES
 #########
 # Config
-alias config='cd $HOME/.config/ixpkgs'
+alias config='cd $HOME/.config/home-manager/'
 
 # Vim
 alias neoc='vi $HOME/.config/home-manager/vimrc'
