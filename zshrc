@@ -210,19 +210,19 @@ bindkey '^ ' autosuggest-accept
 # ALIASES
 #########
 # Config
-alias config='cd $HOME/.config/nixpkgs'
+alias config='cd $HOME/.config/ixpkgs'
 
 # Vim
-alias neoc='vi $HOME/.config/nixpkgs/vimrc'
+alias neoc='vi $HOME/.config/home-manager/vimrc'
 
 # Zsh
-alias zshrc='vi $HOME/.config/nixpkgs/zshrc'
-alias szh='source $HOME/.config/nixpkgs/zshrc'
+alias zshrc='vi $HOME/.config/home-manager/zshrc'
+alias szh='source $HOME/.config/home-manager/zshrc'
 
 # Tmux 
 alias tma='tmux attach -t'
 alias tmn='tmux new -s'
-alias tmuxconf='vi $HOME/.config/nixpkgs/tmux.conf'
+alias tmuxconf='vi $HOME/.config/home-manager/tmux.conf'
 
 # SSH
 alias sshconf='vi $HOME/PersonalProjects/dotfiles/sshconfig'
