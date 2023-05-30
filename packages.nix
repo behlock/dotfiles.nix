@@ -12,10 +12,9 @@
     pkgs.nodePackages.typescript # typed superset of JavaScript
     pkgs.nodejs # javaScript runtime
     pkgs.python3 # Python interpreter
-    pkgs.python310Packages.poetry-core # Poetry
-    pkgs.python310Packages.tkinter # tkinter
     pkgs.ripgrep # grep alternative
     pkgs.nixfmt # format nix files
+    pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
     # pkgs.zsh-z-unstable # quickly jump to directories you use often
