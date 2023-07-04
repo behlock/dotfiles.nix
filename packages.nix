@@ -11,6 +11,7 @@
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.typescript # typed superset of JavaScript
     pkgs.nodejs # javaScript runtime
+    pkgs.poetry # python package manager
     pkgs.python3 # Python interpreter
     pkgs.ripgrep # grep alternative
     pkgs.nixfmt # format nix files
