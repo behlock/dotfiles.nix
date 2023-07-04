@@ -26,7 +26,7 @@ Dotfiles, powered by [Nix](https://nixos.org/nix/) and [home-manager](https://gi
 
    ```bash
    $ mkdir ~/.config && cd ~/.config && \
-     git clone https://github.com/behlock/dotfiles.nix.git nixpkgs && cd nixpkgs
+     git clone https://github.com/behlock/dotfiles.nix.git home-manager && cd home-manager
    ```
 
 1. Run the flake and activate your env:

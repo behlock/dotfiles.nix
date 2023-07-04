@@ -19,7 +19,6 @@
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
-    # pkgs.zsh-z-unstable # quickly jump to directories you use often
     pkgs.zsh-vi-mode # better vim mode in zsh
     pkgs.zsh-syntax-highlighting # syntax highlighting for zsh
     pkgs.zsh-history-substring-search # search through zsh history

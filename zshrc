@@ -60,7 +60,6 @@ function ex {
 }
 
 # find or create tmux session
-# make this function accept a name as argument
 function tat {
   name=$1
 
@@ -91,6 +90,7 @@ function rmmany() {
     done
 }
 
+# create TCP tunnel for passed in port number
 function tunnel() {
   bore local $1 --to bore.pub
 }
@@ -216,7 +216,7 @@ bindkey '^ ' autosuggest-accept
 # Config
 alias config='cd $HOME/.config/home-manager/'
 
-# Vim
+# Vimrc
 alias neoc='vi $HOME/.config/home-manager/vimrc'
 
 # Zsh
@@ -247,7 +247,7 @@ alias gsp='git stash pop'
 alias gre='git rebase'
 alias glog='git log --format=%B -n 1 HEAD'
 alias gcomp='nvim -p $(git diff --name-only HEAD~1 HEAD) -c "tabdo :Gdiff HEAD~1"'
-alias gitconf='vi $HOME/PersonalProjects/dotfiles/gitconfig'
+alias gitconf='vi $HOME/PersonalProjects/home-manager/gitconfig'
 alias lg='lazygit'
 
 # Projects
@@ -255,7 +255,6 @@ alias lg='lazygit'
 alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
-alias df='cd $HOME/PersonalProjects/dotfiles'
 alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
 alias opf='cd $HOME/PersonalProjects/onepointfive'
 alias bxyz='cd $HOME/PersonalProjects/behlock.xyz'
