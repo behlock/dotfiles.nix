@@ -91,6 +91,10 @@ function rmmany() {
     done
 }
 
+function tunnel() {
+  bore local $1 --to bore.pub
+}
+
 ##############
 # BASIC SETUP
 ##############
@@ -276,6 +280,7 @@ alias tf='terraform'
 
 ## Misc
 alias ytdl='yt-dlp -x -f bestaudio'
+alias ccd='code .'
 
 # Path
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
