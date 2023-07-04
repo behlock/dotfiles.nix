@@ -16,6 +16,7 @@
     pkgs.python3 # Python interpreter
     pkgs.ripgrep # grep alternative
     pkgs.nixfmt # format nix files
+    pkgs.openjdk # Java runtime
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
