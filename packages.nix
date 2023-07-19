@@ -9,14 +9,17 @@
     pkgs.htop # interactive process viewer
     pkgs.lazygit # git superpowers in terminal
     pkgs.jq # lightweight and flexible command-line JSON processor
+    pkgs.mpc-cli # cli for music player daemon
+    pkgs.nixfmt # format nix files
     pkgs.nodePackages.prettier # code formatter
+    pkgs.nodePackages.svgo # svg optimizer
     pkgs.nodePackages.typescript # typed superset of JavaScript
     pkgs.nodejs # javaScript runtime
+    pkgs.openjdk # Java runtime
     pkgs.poetry # python package manager
     pkgs.python3 # Python interpreter
     pkgs.ripgrep # grep alternative
-    pkgs.nixfmt # format nix files
-    pkgs.openjdk # Java runtime
+
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
