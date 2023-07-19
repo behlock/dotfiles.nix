@@ -8,6 +8,7 @@
     pkgs.heroku # cloud platform as a service
     pkgs.htop # interactive process viewer
     pkgs.lazygit # git superpowers in terminal
+    pkgs.jpegoptim # jpeg optimizer
     pkgs.jq # lightweight and flexible command-line JSON processor
     pkgs.mpc-cli # cli for music player daemon
     pkgs.nixfmt # format nix files
