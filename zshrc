@@ -264,6 +264,7 @@ alias cord='cd $HOME/PersonalProjects/cord'
 
 ## Python
 alias py='python'
+alias poad='poetry add'
 
 ## JS
 alias prd='npm run dev'
