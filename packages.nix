@@ -17,10 +17,10 @@
     pkgs.nodePackages.typescript # typed superset of JavaScript
     pkgs.nodejs # javaScript runtime
     pkgs.openjdk # Java runtime
+    pkgs.pngquant # png optimizer
     pkgs.poetry # python package manager
     pkgs.python3 # Python interpreter
     pkgs.ripgrep # grep alternative
-
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
