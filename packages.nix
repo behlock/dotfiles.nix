@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = [
     pkgs.act # run github actions locally
+    pkgs.awscli2 # aws cli
     pkgs.bat # cat clone with syntax highlighting and Git integration
     pkgs.bore-cli # TCP tunnels
     pkgs.comma # run programs without installing them
