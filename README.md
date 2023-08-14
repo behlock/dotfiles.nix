@@ -25,7 +25,7 @@ Dotfiles, powered by [Nix](https://nixos.org/nix/) and [home-manager](https://gi
 1. Go inside your `~/.config` directory and clone this repo:
 
    ```bash
-   $ mkdir ~/.config && cd ~/.config && \
+   $ cd ~/.config && \
      git clone https://github.com/behlock/dotfiles.nix.git home-manager && cd home-manager
    ```
 
