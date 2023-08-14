@@ -29,7 +29,7 @@ Dotfiles, powered by [Nix](https://nixos.org/nix/) and [home-manager](https://gi
      git clone https://github.com/behlock/dotfiles.nix.git home-manager && cd home-manager
    ```
 
-4. Install [home-manager](https://nix-community.github.io/home-manager/index.html#sec-install-standalone):
+4. Install [home-manager](https://nix-community.github.io/home-manager/index.html#sec-install-standalone)
 
 5. Run the flake and activate your env:
 
