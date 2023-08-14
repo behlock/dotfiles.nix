@@ -37,10 +37,10 @@
       };
 
     # Work Macbook
-    homeConfigurations."wbehlock" =
+    homeConfigurations."wbehlock@Walids-MacBook-Pro" =
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [ ./home-behlock.nix ];
+        modules = [ ./home-wbehlock.nix ];
       };
 
     # Raspberry Pi
