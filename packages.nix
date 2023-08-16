@@ -24,6 +24,7 @@
     pkgs.poetry # python package manager
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.python3 # Python interpreter
+    pkgs.python311 # Python 3.11
     pkgs.ripgrep # grep alternative
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
