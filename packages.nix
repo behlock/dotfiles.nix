@@ -22,6 +22,7 @@
     pkgs.openjdk # Java runtime
     pkgs.pngquant # png optimizer
     pkgs.poetry # python package manager
+    pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.python3 # Python interpreter
     pkgs.ripgrep # grep alternative
     pkgs.yarn # yarn
