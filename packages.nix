@@ -25,6 +25,7 @@
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.python311 # Python 3.11
     pkgs.ripgrep # grep alternative
+    pkgs.sops # editor of encrypted files
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
