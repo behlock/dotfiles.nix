@@ -2,6 +2,7 @@
   home.packages = [
     pkgs.act # run github actions locally
     pkgs.awscli2 # aws cli
+    pkgs.azure-cli # azure cli
     pkgs.bat # cat clone with syntax highlighting and Git integration
     pkgs.bore-cli # TCP tunnels
     pkgs.certbot # Let's Encrypt client
