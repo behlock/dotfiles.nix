@@ -25,6 +25,7 @@
     pkgs.poetry # python package manager
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.python311 # Python 3.11
+    pkgs.qpdf # PDF transformation
     pkgs.ripgrep # grep alternative
     pkgs.sops # editor of encrypted files
     pkgs.yarn # yarn
