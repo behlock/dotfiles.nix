@@ -27,6 +27,7 @@
     pkgs.qpdf # PDF transformation
     pkgs.ripgrep # grep alternative
     pkgs.sops # editor of encrypted files
+    pkgs.wuzz # interactive cli tool for HTTP inspection
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh
