@@ -215,6 +215,7 @@ bindkey '^ ' autosuggest-accept
 #########
 # Config
 alias config='cd $HOME/.config/home-manager/'
+alias home-manager-clean='nix-env --delete-generations old && nix-store --gc'
 
 # Vimrc
 alias neoc='vi $HOME/.config/home-manager/vimrc'
