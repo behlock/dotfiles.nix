@@ -9,6 +9,7 @@
     pkgs.docker # need no introduction
     pkgs.ffmpeg # video and audio converter
     pkgs.heroku # cloud platform as a service
+    pkgs.git-lfs # git extension for versioning large files
     pkgs.htop # interactive process viewer
     pkgs.httpie # http client
     pkgs.lazygit # git superpowers in terminal
