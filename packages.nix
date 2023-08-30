@@ -12,6 +12,7 @@
     pkgs.git-lfs # git extension for versioning large files
     pkgs.htop # interactive process viewer
     pkgs.httpie # http client
+    pkgs.k9s # terminal UI to interact with your Kubernetes clusters
     pkgs.lazygit # git superpowers in terminal
     pkgs.jpegoptim # jpeg optimizer
     pkgs.jq # lightweight and flexible command-line JSON processor
