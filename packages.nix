@@ -19,6 +19,7 @@
     pkgs.jq # lightweight and flexible command-line JSON processor
     pkgs.mpc-cli # cli for music player daemon
     pkgs.nixfmt # format nix files
+    pkgs.nodePackages.eslint # linting utility for JavaScript
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.svgo # svg optimizer
     pkgs.nodePackages.typescript # typed superset of JavaScript
