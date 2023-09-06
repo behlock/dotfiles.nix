@@ -10,6 +10,7 @@
     pkgs.ffmpeg # video and audio converter
     pkgs.heroku # cloud platform as a service
     pkgs.git-lfs # git extension for versioning large files
+    pkgs.gh # github cli
     pkgs.htop # interactive process viewer
     pkgs.httpie # http client
     pkgs.k9s # terminal UI to interact with your Kubernetes clusters
