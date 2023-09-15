@@ -269,12 +269,9 @@ alias py='python'
 alias poad='poetry add'
 
 ## JS
-alias prd='npm run dev'
-
-## Elm
-alias ys='npm run clear-cache && PARCEL_ELM_NO_DEBUG=true npm start'
-alias yf='npm run format'
-alias yr='npm run review --fix'
+alias prd='yarn dev'
+alias prb='yarn build'
+alias prl='yarn lint'
 
 ## Infra
 alias k='kubectl'
