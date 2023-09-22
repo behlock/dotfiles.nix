@@ -28,9 +28,11 @@
     pkgs.openjdk # Java runtime
     pkgs.pngquant # png optimizer
     pkgs.poetry # python package manager
+    pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.python311 # Python 3.11
     pkgs.qpdf # PDF transformation
+    pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
     pkgs.sops # editor of encrypted files
     pkgs.yarn # yarn
