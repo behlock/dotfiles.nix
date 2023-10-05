@@ -282,4 +282,5 @@ alias ytdl='yt-dlp -x -f bestaudio'
 alias ccd='code .'
 
 # Path
+export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"

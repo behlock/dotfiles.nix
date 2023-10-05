@@ -14,6 +14,7 @@
     pkgs.htop # interactive process viewer
     pkgs.httpie # http client
     pkgs.k9s # terminal UI to interact with your Kubernetes clusters
+    pkgs.kubectx # switch faster between clusters and namespaces in kubectl
     pkgs.lazygit # git superpowers in terminal
     pkgs.jless # pager for json files
     pkgs.jpegoptim # jpeg optimizer
