@@ -90,7 +90,7 @@ function rmmany() {
     done
 }
 
-# create TCP tunnel for passed in port number
+# create TCP tunnel
 function tunnel() {
   bore local $1 --to bore.pub
 }
@@ -238,7 +238,6 @@ alias gchm='git checkout main'
 alias gchma='git checkout master'
 alias gchb='git checkout -b'
 alias gl='git pull'
-alias gd='git diff'
 alias gst='git status'
 alias ga='git add -A'
 alias gc='git commit -m'
@@ -258,11 +257,9 @@ alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
 alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
-alias opf='cd $HOME/PersonalProjects/onepointfive'
 alias bxyz='cd $HOME/PersonalProjects/behlock.xyz'
 alias ccg='cd $HOME/PersonalProjects/collective-creation-games'
 alias resume='cd $HOME/PersonalProjects/resume'
-alias cord='cd $HOME/PersonalProjects/cord'
 
 ## Python
 alias py='python'
@@ -280,7 +277,3 @@ alias tf='terraform'
 ## Misc
 alias ytdl='yt-dlp -x -f bestaudio'
 alias ccd='code .'
-
-# Path
-export PATH="/usr/local/bin:$PATH"
-export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
