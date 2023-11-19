@@ -31,7 +31,7 @@
     pkgs.poetry # python package manager
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
-    pkgs.python312 # Python 3.11
+    pkgs.python312 # Python 3.12
     pkgs.qpdf # PDF transformation
     pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
