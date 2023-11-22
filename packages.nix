@@ -4,6 +4,7 @@
     pkgs.awscli2 # aws cli
     pkgs.bat # cat clone with syntax highlighting and Git integration
     pkgs.bore-cli # TCP tunnels
+    pkgs.cargo # rust package manager
     pkgs.certbot # Let's Encrypt client
     pkgs.comma # run programs without installing them
     pkgs.docker # need no introduction
