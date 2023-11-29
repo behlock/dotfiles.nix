@@ -277,3 +277,6 @@ alias tf='terraform'
 ## Misc
 alias ytdl='yt-dlp -x -f bestaudio'
 alias ccd='code .'
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
