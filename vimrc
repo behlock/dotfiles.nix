@@ -1,10 +1,10 @@
 " General settings {{{
 set encoding=utf-8
-set t_Co=256                      " moar colors
+set t_Co=256                      " more colors
 set clipboard=unnamedplus         " use system clipboard
-set nocompatible                  " nocompatible is good for humans
+set nocompatible                  
 syntax enable                     " enable syntax highlighting...
-filetype plugin indent on         " depending on filetypes...
+filetype plugin indent on         " depending on filetypes
 runtime macros/matchit.vim        " with advanced matching capabilities
 set pastetoggle=<F12>             " for pasting code into Vim
 set timeout tm=1000 ttm=10        " fix slight delay after pressing Esc then O
@@ -16,21 +16,21 @@ set shortmess+=I                  " disable intro message
 
 " Style
 set termguicolors
-set number                        " line numbers are cool
-set relativenumber                " and relative even cooler
+set number                        " line numbers
+set relativenumber                " and relative ones
 set ruler                         " show the cursor position all the time
 set nocursorline                  " disable cursor line
 set showcmd                       " display incomplete commands
-set novisualbell                  " no flashes please
+set novisualbell                  " no flashes
 set scrolloff=3                   " provide some context when editing
 set hidden                        " allow backgrounding buffers without writing them, and
                                   " remember marks/undo for backgrounded buffers
 " Mouse
-set mouse=a                       " we love the mouse
+set mouse=a                       " mouse support
 if !has('nvim')
-  set ttymouse=xterm2             " and we want it to be fast
+  set ttymouse=xterm2             " fast
 endif
-set mousehide                     " but hide it when we're writing
+set mousehide                     " hide it when we're writing
 
 " Whitespace
 set wrap                          " wrap long lines
@@ -59,10 +59,10 @@ set listchars+=precedes:<         " the character to show in the first column wh
 set fillchars+=vert:\             " set vertical divider to empty space
 
 " Searching
-set hlsearch                      " highlight matches...
+set hlsearch                      " highlight matches
 nohlsearch                        " but don't highlight last search when reloading
 set incsearch                     " incremental searching
-set ignorecase                    " searches are case insensitive...
+set ignorecase                    " searches are case insensitive
 set smartcase                     " unless they contain at least one capital letter
 
 " Windows
