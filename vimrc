@@ -16,8 +16,6 @@ set shortmess+=I                  " disable intro message
 
 " Style
 set termguicolors
-set background=dark
-silent! color gruvbox8
 set number                        " line numbers are cool
 set relativenumber                " and relative even cooler
 set ruler                         " show the cursor position all the time
