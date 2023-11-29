@@ -27,6 +27,7 @@ in {
     withRuby = false;
     plugins = with pkgs.vimPlugins; [
       ale
+      copilot-vim
       fzf-vim
       goldenview
       lightline-vim
