@@ -50,7 +50,7 @@ set wildignore+=tmp/**,node_modules/**,bower_components/**
 
 " List chars
 set listchars=""                  " reset the listchars
-set listchars=tab:▸\ ,eol:¬       " a tab should display as "▸ ", end of lines as "¬"
+" set listchars=tab:▸\ ,eol:¬       " a tab should display as "▸ ", end of lines as "¬"
 set listchars+=trail:.            " show trailing spaces as dots
 set listchars+=extends:>          " the character to show in the last column when wrap is
                                   " off and the line continues beyond the right of the screen
@@ -170,8 +170,8 @@ let mapleader=' '
 nnoremap Y y$
 
 " open vimrc and reload it
-nnoremap <Leader>vv :vsplit $HOME/.config/nixpkgs/vimrc<CR>
-nnoremap <Leader>sv :source $HOME/.config/nixpkgs/vimrc<CR>
+nnoremap <Leader>vv :vsplit $HOME/.config/home-manager/vimrc<CR>
+nnoremap <Leader>sv :source $HOME/.config/home-manager/vimrc<CR>
 
 " disable man page for word under cursor
 nnoremap K <Nop>

@@ -44,6 +44,7 @@ in {
       vim-fugitive
       vim-gruvbox8
       vim-mundo
+      nerdtree
       vim-polyglot
       vim-rails
       vim-repeat
