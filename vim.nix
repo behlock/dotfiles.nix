@@ -31,6 +31,8 @@ in {
       fzf-vim
       goldenview
       lightline-vim
+      nerdtree
+      nerdtree-git-plugin
       neoformat
       quickfix-reflector-vim
       splitjoin-vim
@@ -42,9 +44,10 @@ in {
       vim-endwise
       vim-eunuch
       vim-fugitive
+      vim-gitgutter
       vim-gruvbox8
       vim-mundo
-      nerdtree
+      vim-nerdtree-syntax-highlight
       vim-polyglot
       vim-rails
       vim-repeat

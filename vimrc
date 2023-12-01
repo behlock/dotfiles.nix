@@ -173,6 +173,9 @@ nnoremap Y y$
 nnoremap <Leader>vv :vsplit $HOME/.config/home-manager/vimrc<CR>
 nnoremap <Leader>sv :source $HOME/.config/home-manager/vimrc<CR>
 
+" open NERDTree
+nnoremap <Leader>pp :NERDTreeToggle<CR>
+
 " disable man page for word under cursor
 nnoremap K <Nop>
 
@@ -193,9 +196,6 @@ nnoremap <silent> <Leader>cf <Esc>/\v^[<=>]{7}( .*\|$)<CR>
 
 " show colorcolumn
 nnoremap <silent> <Leader>sc :set colorcolumn=80<CR>
-
-" copy current path
-nnoremap <silent> <Leader>p :let @* = expand("%")<CR>
 
 " easy substitutions
 nnoremap <Leader>r :%s///gc<Left><Left><Left>
@@ -229,7 +229,6 @@ if exists('g:vscode')
   let g:loaded_vimux = 1 " disable vimux
   let g:goldenview__enable_at_startup = 0 " disable goldenview
   nnoremap <Leader>f :call VSCodeNotify("workbench.action.quickOpen")<CR>
-  nnoremap <Leader>p :call VSCodeNotify("copyRelativeFilePath")<CR>
 else
   " nnoremap <Leader>gs  :Gstatus<CR>
   nnoremap <Leader>gd  :Gdiff<CR>
@@ -248,8 +247,6 @@ else
   nnoremap <silent> <S-right> <Esc>:bn<CR>
   nnoremap <Leader>a <Esc>:Rg<space>
   nnoremap <Leader>u :MundoToggle<CR>
-  nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
-  nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
   nmap p <plug>(YoinkPaste_p)
   nmap P <plug>(YoinkPaste_P)
   nmap <C-n> <plug>(YoinkPostPasteSwapBack)
