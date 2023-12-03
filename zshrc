@@ -92,7 +92,7 @@ function rmmany() {
 
 # create TCP tunnel
 function tunnel() {
-  bore local $1 --to bore.pub
+  ngrok http $1
 }
 
 ##############
