@@ -41,6 +41,7 @@ in {
       ultisnips
       vim-abolish
       vim-commentary
+      vim-devicons
       vim-endwise
       vim-eunuch
       vim-fugitive

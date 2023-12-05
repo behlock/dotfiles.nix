@@ -121,7 +121,7 @@ has_program direnv && eval "$(direnv hook zsh)"
 #########
 function git_prompt_info {
   local dirstatus=" OK"
-  local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
+  local dirty="%{$fg_bold[yellow]%} X%{$reset_color%}"
 
   if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
     dirstatus=$dirty

@@ -71,7 +71,12 @@ set splitbelow                    " create new vertical split below the current 
 
 " Status line
 set laststatus=2
+
+" Gitgutter
+highlight clear SignColumn
+set signcolumn=yes
 " }}}
+
 
 " FileType settings {{{
 if has("autocmd")
