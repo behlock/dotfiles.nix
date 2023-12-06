@@ -9,10 +9,10 @@ runtime macros/matchit.vim        " with advanced matching capabilities
 set pastetoggle=<F12>             " for pasting code into Vim
 set timeout tm=1000 ttm=10        " fix slight delay after pressing Esc then O
 set autoread                      " auto load files if vim detects change
-set autowrite                     " auto write files when moving around
 set nobackup                      " disable backup files...
 set noswapfile                    " and swap files
 set shortmess+=I                  " disable intro message
+set autowriteall                  " autosave
 
 " Style
 set termguicolors
