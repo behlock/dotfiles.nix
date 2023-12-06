@@ -216,11 +216,11 @@ nnoremap <Leader>kcm :KillControlM<CR>
 nnoremap <C-S> :Rg <C-R><C-W><CR>
 vnoremap <C-S> y<Esc>:Rg <C-R>"<CR>
 
-" " easier navigation between split windows
-" nnoremap <C-J> <C-W>j
-" nnoremap <C-K> <C-W>k
-" nnoremap <C-H> <C-W>h
-" nnoremap <C-L> <C-W>l
+" Resize windows
+nnoremap <Leader><Down> :resize -10<CR>
+nnoremap <Leader><Left> :vertical resize +40<CR>
+nnoremap <Leader><Right> :vertical resize -40<CR>
+nnoremap <Leader><Up> :resize +10<CR>
 
 " Plugins {{{
 if exists('g:vscode')
