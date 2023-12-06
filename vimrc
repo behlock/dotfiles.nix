@@ -216,17 +216,11 @@ nnoremap <Leader>kcm :KillControlM<CR>
 nnoremap <C-S> :Rg <C-R><C-W><CR>
 vnoremap <C-S> y<Esc>:Rg <C-R>"<CR>
 
-" easier navigation between split windows
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
-
-" disable cursor keys in normal mode
-" nnoremap <Left>  :echo "no!"<CR>
-" nnoremap <Right> :echo "no!"<CR>
-" nnoremap <Up>    :echo "no!"<CR>
-" nnoremap <Down>  :echo "no!"<CR>
+" " easier navigation between split windows
+" nnoremap <C-J> <C-W>j
+" nnoremap <C-K> <C-W>k
+" nnoremap <C-H> <C-W>h
+" nnoremap <C-L> <C-W>l
 
 " Plugins {{{
 if exists('g:vscode')
