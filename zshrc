@@ -260,6 +260,7 @@ alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
 alias bxyz='cd $HOME/PersonalProjects/behlock.xyz'
 alias ccg='cd $HOME/PersonalProjects/collective-creation-games'
 alias resume='cd $HOME/PersonalProjects/resume'
+alias ram='cd $HOME/ram && vi ram.md'
 
 ## Python
 alias py='python'
