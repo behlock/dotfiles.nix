@@ -75,6 +75,9 @@ set laststatus=2
 " Gitgutter
 highlight clear SignColumn
 set signcolumn=yes
+
+" NERDTree
+let NERDTreeShowHidden=1
 " }}}
 
 
