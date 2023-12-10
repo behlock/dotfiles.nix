@@ -75,9 +75,6 @@ set laststatus=2
 " Gitgutter
 highlight clear SignColumn
 set signcolumn=yes
-
-" NERDTree
-let NERDTreeShowHidden=1
 " }}}
 
 
@@ -174,6 +171,9 @@ endif
 nnoremap <SPACE> <Nop>
 let mapleader=' '
 
+" Autosave
+inoremap <Esc> <Esc>:w<CR>
+
 " Y u no consistent?
 nnoremap Y y$
 
@@ -226,74 +226,62 @@ nnoremap <Leader><Right> :vertical resize -40<CR>
 nnoremap <Leader><Up> :resize +10<CR>
 
 " Plugins {{{
-if exists('g:vscode')
-  let g:ale_enabled = 0 " disable ale
-  let g:loaded_vimux = 1 " disable vimux
-  let g:goldenview__enable_at_startup = 0 " disable goldenview
-  nnoremap <Leader>f :call VSCodeNotify("workbench.action.quickOpen")<CR>
-else
-  " nnoremap <Leader>gs  :Gstatus<CR>
-  nnoremap <Leader>gd  :Gdiff<CR>
-  nnoremap <Leader>gci :Gcommit<CR>
-  nnoremap <Leader>gw  :Gwrite<CR>
-  nnoremap <Leader>gr  :Gread<CR>
-  nnoremap <Leader>gb  :Git blame<CR>
-  nnoremap <Leader>w :ALEDetail<CR>
-  nnoremap <Leader>x :ALENextWrap<CR>
-  nnoremap <Leader>dd :ALEGoToDefinition<CR>
-  nnoremap <Leader>dt :ALEGoToTypeDefinition<CR>
-  nnoremap <Leader>f :Files<CR>
-  nnoremap <Leader>b :Buffers<CR>
-  nnoremap <Leader>m :History<CR>
-  nnoremap <silent> <S-left> <Esc>:bp<CR>
-  nnoremap <silent> <S-right> <Esc>:bn<CR>
-  nnoremap <Leader>a <Esc>:Rg<space>
-  nnoremap <Leader>u :MundoToggle<CR>
-  nmap p <plug>(YoinkPaste_p)
-  nmap P <plug>(YoinkPaste_P)
-  nmap <C-n> <plug>(YoinkPostPasteSwapBack)
-  nmap <C-p> <plug>(YoinkPostPasteSwapForward)
+noremap <Leader>w :ALEDetail<CR>
+nnoremap <Leader>x :ALENextWrap<CR>
+nnoremap <Leader>dd :ALEGoToDefinition<CR>
+nnoremap <Leader>dt :ALEGoToTypeDefinition<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>m :History<CR>
+nnoremap <silent> <S-left> <Esc>:bp<CR>
+nnoremap <silent> <S-right> <Esc>:bn<CR>
+nnoremap <Leader>a <Esc>:Rg<space>
+nnoremap <Leader>u :MundoToggle<CR>
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+nmap <C-n> <plug>(YoinkPostPasteSwapBack)
+nmap <C-p> <plug>(YoinkPostPasteSwapForward)
 
-  let g:UltiSnipsSnippetDirectories = ['~/.config/nixpkgs/snippets']
-  let g:ale_lint_on_insert_leave = 0
-  let g:ale_lint_on_text_changed = 'never'
-  let g:ale_linters = {
-        \ 'nix': [],
-        \ 'typescript': ['tsserver'],
-        \ 'elm': ['make'] }
-  let g:fzf_layout = { 'down': '~30%' }
-  let g:goldenview__enable_default_mapping = 0
-  let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
-  let g:loaded_python_provider = 1
-  let g:mundo_right = 1
-  let g:neoformat_nix_nixfmt = {
-    \ 'exe': 'nixfmt',
-    \ 'args': ['--width', '80'],
-    \ 'stdin': 1,
-    \ }
-  let g:neoformat_enabled_json = []
-  let g:neoformat_enabled_nix = ['nixfmt']
-  let g:neoformat_enabled_yaml = []
-  let g:neoformat_only_msg_on_error = 1
-  let g:test#preserve_screen = 1
-  let g:test#strategy = "vimux"
-  let g:tmux_navigator_disable_when_zoomed = 1
-  let g:yoinkIncludeDeleteOperations = 1
-  let g:yoinkSavePersistently = 1
-  let g:yoinkSwapClampAtEnds = 0
+let g:UltiSnipsSnippetDirectories = ['~/.config/home-manager/snippets']
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {
+      \ 'nix': [],
+      \ 'typescript': ['tsserver'],
+      \ 'elm': ['make'] }
+let g:fzf_layout = { 'down': '~30%' }
+let g:goldenview__enable_default_mapping = 0
+let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
+let g:loaded_python_provider = 1
+let g:mundo_right = 1
+let NERDTreeShowHidden=1
+let g:neoformat_nix_nixfmt = {
+  \ 'exe': 'nixfmt',
+  \ 'args': ['--width', '80'],
+  \ 'stdin': 1,
+  \ }
+let g:neoformat_enabled_json = []
+let g:neoformat_enabled_nix = ['nixfmt']
+let g:neoformat_enabled_yaml = []
+let g:neoformat_only_msg_on_error = 1
+let g:test#preserve_screen = 1
+let g:test#strategy = "vimux"
+let g:tmux_navigator_disable_when_zoomed = 1
+let g:yoinkIncludeDeleteOperations = 1
+let g:yoinkSavePersistently = 1
+let g:yoinkSwapClampAtEnds = 0
 
-  function! s:build_quickfix_list(lines)
-    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-    copen
-    cc
-  endfunction
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
 
-  let g:fzf_action = {
-        \ 'ctrl-q': function('s:build_quickfix_list'),
-        \ 'ctrl-t': 'tab split',
-        \ 'ctrl-x': 'split',
-        \ 'ctrl-v': 'vsplit' }
-endif
+let g:fzf_action = {
+      \ 'ctrl-q': function('s:build_quickfix_list'),
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 " }}}
 
 " Clipboard integration in spin
