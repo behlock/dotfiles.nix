@@ -234,8 +234,6 @@ alias sshconf='vi $HOME/PersonalProjects/dotfiles/sshconfig'
 
 # Moving around
 alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 
 # Git
 alias gch='git checkout'
