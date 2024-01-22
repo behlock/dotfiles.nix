@@ -38,6 +38,7 @@
     pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
     pkgs.sops # editor of encrypted files
+    pkgs.tailspin # log file highlighter
     pkgs.tree # display directory tree
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
