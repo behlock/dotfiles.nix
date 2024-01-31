@@ -34,6 +34,7 @@
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.python311 # Python 3.11
     pkgs.python311Packages.pip # python package manager
+    pkgs.python311Packages.ipykernel # ipython kernel for jupyter
     pkgs.qpdf # PDF transformation
     pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
