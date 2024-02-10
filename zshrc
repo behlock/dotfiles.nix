@@ -17,14 +17,6 @@ function has_program {
   hash $1 2>/dev/null
 }
 
-function is_vim_running {
-  jobs | grep -o 'vim' &> /dev/null
-}
-
-function is_direnv_dir {
-  [[ -n "${DIRENV_DIR}" ]]
-}
-
 # go back n directories
 function b {
     str=""
@@ -136,7 +128,6 @@ local dir_info_color="%{$fg_bold[grey]%}"
 local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 local prompt_normal="φ %{$reset_color%}"
 local prompt_jobs="%{$fg_bold[red]%}φ %{$reset_color%}"
-# local prompt_direnv="\$(is_direnv_dir && echo \"*\")"
 
 PROMPT='${dir_info}$(git_prompt_info) %(1j.$prompt_jobs.$prompt_normal)'
 
@@ -232,9 +223,6 @@ alias tmuxconf='vi $HOME/.config/home-manager/tmux.conf'
 # SSH
 alias sshconf='vi $HOME/PersonalProjects/dotfiles/sshconfig'
 
-# Moving around
-alias ..='cd ..'
-
 # Git
 alias gch='git checkout'
 alias gchm='git checkout main'
@@ -244,7 +232,6 @@ alias gl='git pull'
 alias gst='git status'
 alias ga='git add -A'
 alias gc='git commit -m'
-alias gac='git add -A && git commit -m'
 alias gp='git push'
 alias gs='git stash'
 alias gsp='git stash pop'
@@ -260,14 +247,9 @@ alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
 alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
-alias bxyz='cd $HOME/PersonalProjects/behlock.xyz'
-alias ccg='cd $HOME/PersonalProjects/collective-creation-games'
-alias resume='cd $HOME/PersonalProjects/resume'
-alias ram='cd $HOME/ram && vi ram.md'
 
 ## Python
 alias py='python'
-alias poad='poetry add'
 
 ## JS
 alias prd='yarn dev'
@@ -275,7 +257,6 @@ alias prb='yarn build'
 alias prl='yarn lint'
 
 ## Infra
-alias k='kubectl'
 alias tf='terraform'
 
 ## Misc
