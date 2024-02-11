@@ -1,0 +1,20 @@
+# espanso match file
+
+matches:
+  # Current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  # Daily log template
+  - trigger: ":daily"
+    replace: "# {{mydate}} \n ## How was my mood today? \n\n ## What am I grateful for? \n\n ## Notes\n\n #daily "
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
