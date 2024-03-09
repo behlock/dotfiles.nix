@@ -30,6 +30,7 @@
     pkgs.openjdk # Java runtime
     pkgs.pngquant # png optimizer
     pkgs.poetry # python package manager
+    pkgs.portaudio # cross-platform audio I/O library
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.pyenv # python version manager
