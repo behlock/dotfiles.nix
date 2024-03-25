@@ -26,6 +26,7 @@
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.svgo # svg optimizer
     pkgs.nodePackages.typescript # typed superset of JavaScript
+    pkgs.nodePackages.vercel # vercel CLI
     pkgs.nodejs # javaScript runtime
     pkgs.openjdk # Java runtime
     pkgs.pngquant # png optimizer
