@@ -37,7 +37,7 @@
       };
 
     # Work Macbook
-    homeConfigurations."wbehlock@Walids-MacBook-Pro" =
+    homeConfigurations."wbehlock@Walids-MBP" =
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [ ./home-wbehlock.nix ];
