@@ -40,6 +40,7 @@
     pkgs.qpdf # PDF transformation
     pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
+    pkgs.rustc # rust compiler
     pkgs.sops # editor of encrypted files
     pkgs.tailspin # log file highlighter
     pkgs.tree # display directory tree
