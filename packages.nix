@@ -23,6 +23,7 @@
     pkgs.mpc-cli # cli for music player daemon
     pkgs.nixfmt # format nix files
     pkgs.nodePackages.eslint # linting utility for JavaScript
+    pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.svgo # svg optimizer
     pkgs.nodePackages.typescript # typed superset of JavaScript
