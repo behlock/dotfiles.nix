@@ -32,6 +32,7 @@
     pkgs.nodejs # javaScript runtime
     pkgs.openjdk # Java runtime
     pkgs.pngquant # png optimizer
+    pkgs.pipx # install and run python packages in isolated environments
     pkgs.poetry # python package manager
     pkgs.portaudio # cross-platform audio I/O library
     pkgs.postgresql_jit # postgres
