@@ -10,6 +10,7 @@
     pkgs.docker # need no introduction
     pkgs.ffmpeg # video and audio converter
     pkgs.heroku # cloud platform as a service
+    pkgs.ghostscript # postscript interpreter
     pkgs.git-lfs # git extension for versioning large files
     pkgs.gh # github cli
     pkgs.htop # interactive process viewer
