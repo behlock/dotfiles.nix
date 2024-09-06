@@ -2,18 +2,19 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand = "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
-    fileWidgetCommand = "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'"; 
-    changeDirWidgetCommand = "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
+    defaultCommand =
+      "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
+    fileWidgetCommand =
+      "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
+    changeDirWidgetCommand =
+      "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
     defaultOptions = [ "-m --bind ctrl-a:select-all,ctrl-d:deselect-all" ];
-    tmux = {
-      enableShellIntegration = true;
-    };
+    tmux = { enableShellIntegration = true; };
   };
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autocd = true;
@@ -35,7 +36,8 @@
       ERL_AFLAGS = "-kernel shell_history enabled";
       SHELL = "${pkgs.zsh}/bin/zsh";
       BAT_THEME = "OneHalfDark";
-      KEYTIMEOUT= 1; # Reduce delay for key combinations in order to change to vi mode faster
+      KEYTIMEOUT =
+        1; # Reduce delay for key combinations in order to change to vi mode faster
     };
     shellAliases = {
       ls = "exa -F";
@@ -68,7 +70,7 @@
     enableZshIntegration = true;
   };
 
-  programs.exa = { enable = true; };
+  programs.eza = { enable = true; };
 
   home.file.".inputrc".source = ./inputrc;
 }

@@ -22,9 +22,8 @@
     pkgs.jpegoptim # jpeg optimizer
     pkgs.jq # lightweight and flexible command-line JSON processor
     pkgs.mpc-cli # cli for music player daemon
-    pkgs.nixfmt # format nix files
+    pkgs.nixfmt-classic # format nix files
     pkgs.python311Packages.nltk # natural language toolkit
-    pkgs.nodePackages.eslint # linting utility for JavaScript
     pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.svgo # svg optimizer
