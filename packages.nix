@@ -9,12 +9,14 @@
     pkgs.comma # run programs without installing them
     pkgs.docker # need no introduction
     pkgs.ffmpeg # video and audio converter
+    pkgs.flutter # Google's UI toolkit for building natively compiled applications
     pkgs.heroku # cloud platform as a service
     pkgs.ghostscript # postscript interpreter
     pkgs.git-lfs # git extension for versioning large files
     pkgs.gh # github cli
     pkgs.htop # interactive process viewer
     pkgs.httpie # http client
+    pkgs.ktlint # kotlin linter
     pkgs.k9s # terminal UI to interact with your Kubernetes clusters
     pkgs.kubectx # switch faster between clusters and namespaces in kubectl
     pkgs.lazygit # git superpowers in terminal
