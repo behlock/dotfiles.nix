@@ -247,6 +247,7 @@ alias projects='cd $HOME/Projects'
 alias pp='cd $HOME/PersonalProjects'
 alias ep='cd $HOME/ExternalProjects'
 alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
+alias essentials='cd $HOME/Projects/essentials'
 
 ## Python
 alias py='python'
