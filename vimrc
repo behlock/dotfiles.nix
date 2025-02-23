@@ -77,6 +77,10 @@ highlight clear SignColumn
 set signcolumn=yes
 " }}}
 
+" Colorscheme {{{
+colorscheme gruvbox
+" }}}
+
 
 " FileType settings {{{
 if has("autocmd")

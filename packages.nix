@@ -18,6 +18,7 @@
     pkgs.httpie # http client
     pkgs.ktlint # kotlin linter
     pkgs.k9s # terminal UI to interact with your Kubernetes clusters
+    pkgs.kubectl # kubernetes cli
     pkgs.kubectx # switch faster between clusters and namespaces in kubectl
     pkgs.lazygit # git superpowers in terminal
     pkgs.jless # pager for json files
@@ -26,6 +27,7 @@
     pkgs.mpc-cli # cli for music player daemon
     pkgs.nixfmt-classic # format nix files
     pkgs.python311Packages.nltk # natural language toolkit
+    pkgs.ngrok # tunnel local services to the public internet
     pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
     pkgs.nodePackages.prettier # code formatter
     pkgs.nodePackages.svgo # svg optimizer
