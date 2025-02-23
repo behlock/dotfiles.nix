@@ -270,6 +270,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # GCloud SDK
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Secrets
-source $HOME/.config/home-manager/secrets.zsh
