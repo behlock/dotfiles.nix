@@ -77,11 +77,6 @@ highlight clear SignColumn
 set signcolumn=yes
 " }}}
 
-" Colorscheme {{{
-colorscheme gruvbox
-" }}}
-
-
 " FileType settings {{{
 if has("autocmd")
   " in Makefiles use real tabs, not tabs expanded to spaces
