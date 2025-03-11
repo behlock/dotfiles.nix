@@ -25,9 +25,9 @@
     pkgs.jless # pager for json files
     pkgs.jpegoptim # jpeg optimizer
     pkgs.jq # lightweight and flexible command-line JSON processor
+    pkgs.maven # java build tool
     pkgs.mpc-cli # cli for music player daemon
     pkgs.nixfmt-classic # format nix files
-    pkgs.python311Packages.nltk # natural language toolkit
     pkgs.ngrok # tunnel local services to the public internet
     pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
     pkgs.nodePackages.prettier # code formatter
@@ -43,6 +43,7 @@
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.pyenv # python version manager
+    pkgs.python311Packages.nltk # natural language toolkit
     pkgs.python312Packages.pip # python package manager
     pkgs.python312 # Python 3.12
     pkgs.qpdf # PDF transformation
