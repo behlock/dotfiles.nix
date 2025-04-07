@@ -5,6 +5,9 @@
 [includeIf "gitdir:~/Projects/"]
 	path = "~/Projects/.gitconfig"
 
+[includeIf "gitdir:~/Projects/EssentialSpace/"]
+    path = "~/Projects/EssentialSpace/.gitconfig"
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -13,3 +16,4 @@
 
 [push]
 	autoSetupRemote = true
+
