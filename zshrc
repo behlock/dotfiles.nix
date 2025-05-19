@@ -87,6 +87,19 @@ function tunnel() {
   bore local "$1" --to bore.pub
 }
 
+# Toggle android.jar between sync and compile versions
+function use_sync_android_jar {
+  ln -sf /Users/wbehlock/Library/Android/sdk/platforms/android-35/android27.jar \
+         /Users/wbehlock/Library/Android/sdk/platforms/android-35/android.jar
+  echo "→ Using android27.jar (27M) for Gradle sync"
+}
+
+function use_compile_android_jar {
+  ln -sf /Users/wbehlock/Library/Android/sdk/platforms/android-35/android43.jar \
+         /Users/wbehlock/Library/Android/sdk/platforms/android-35/android.jar
+  echo "→ Using android43.jar (43M) for compilation"
+}
+
 ##############
 # BASIC SETUP
 ##############
