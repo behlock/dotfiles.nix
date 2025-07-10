@@ -228,7 +228,7 @@ alias neoc='vi $HOME/.config/home-manager/vimrc'
 alias zshrc='vi $HOME/.config/home-manager/zshrc'
 alias szh='source $HOME/.config/home-manager/zshrc'
 
-# Tmux 
+# Tmux
 alias tma='tmux attach -t'
 alias tmn='tmux new -s'
 alias tmuxconf='vi $HOME/.config/home-manager/tmux.conf'
@@ -284,4 +284,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
+# NPM global packages
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Local bin
 PATH=$PATH:$HOME/.local/bin
