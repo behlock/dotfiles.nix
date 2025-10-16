@@ -30,20 +30,21 @@
     pkgs.nixfmt-classic # format nix files
     pkgs.ngrok # tunnel local services to the public internet
     pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
-    pkgs.nodePackages.prettier # code formatter
+    # pkgs.nodePackages.prettier # code formatter - conflicts with flutter's LICENSE file
     pkgs.nodePackages.svgo # svg optimizer
     pkgs.nodePackages.typescript # typed superset of JavaScript
     pkgs.nodePackages.vercel # vercel CLI
     pkgs.nodejs # javaScript runtime
     pkgs.openjdk # Java runtime
-    pkgs.pngquant # png optimizer
     pkgs.pipx # install and run python packages in isolated environments
+    pkgs.platformio # embedded software utility
+    pkgs.pngquant # png optimizer
     pkgs.poetry # python package manager
     pkgs.portaudio # cross-platform audio I/O library
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.pyenv # python version manager
-    pkgs.python311Packages.nltk # natural language toolkit
+    pkgs.python312Packages.nltk # natural language toolkit
     pkgs.python312Packages.pip # python package manager
     pkgs.python312 # Python 3.12
     pkgs.qpdf # PDF transformation

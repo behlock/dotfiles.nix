@@ -56,6 +56,10 @@
     terminal = "screen-256color";
     secureSocket = false;
     disableConfirmationPrompt = true;
+    plugins = with pkgs.tmuxPlugins; [
+      resurrect
+      continuum
+    ];
     extraConfig = builtins.readFile ./tmux.conf;
   };
 
