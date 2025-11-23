@@ -48,6 +48,7 @@
     pkgs.python312Packages.pip # python package manager
     pkgs.python312 # Python 3.12
     pkgs.qpdf # PDF transformation
+    pkgs.railway # railway cli
     pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
     pkgs.rustc # rust compiler
