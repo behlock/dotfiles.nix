@@ -52,6 +52,7 @@
     pkgs.ripgrep # grep alternative
     pkgs.rustc # rust compiler
     pkgs.sops # editor of encrypted files
+    pkgs.supabase-cli # supabase cli
     pkgs.tailspin # log file highlighter
     pkgs.tree # display directory tree
     pkgs.uv # fast python package installer
