@@ -2,14 +2,19 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "behlock";
-    userEmail = "behlocks@gmail.com";
     ignores = [ "*~" ".DS_Store" ".direnv" ".env" ".rgignore" ];
-    extraConfig = {
+    settings = {
+      user = {
+        name = "behlock";
+        email = "behlocks@gmail.com";
+      };
       init = { defaultBranch = "main"; };
       pull = { ff = "only"; };
       push = { autoSetupRemote = "true"; };
     };
-    delta = { enable = true; };
+  };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 }

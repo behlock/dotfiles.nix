@@ -26,7 +26,8 @@
     pkgs.jpegoptim # jpeg optimizer
     pkgs.jq # lightweight and flexible command-line JSON processor
     pkgs.maven # java build tool
-    pkgs.mpc-cli # cli for music player daemon
+    pkgs.mpc # cli for music player daemon
+    pkgs.nerd-fonts.jetbrains-mono # patched font with a high number of glyphs
     pkgs.nixfmt-classic # format nix files
     pkgs.ngrok # tunnel local services to the public internet
     pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
