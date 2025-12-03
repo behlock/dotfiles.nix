@@ -45,6 +45,7 @@
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.pyenv # python version manager
+    pkgs.python313Packages.mlx
     pkgs.python312Packages.nltk # natural language toolkit
     pkgs.python312Packages.pip # python package manager
     pkgs.python312 # Python 3.12
