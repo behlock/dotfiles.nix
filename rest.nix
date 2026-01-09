@@ -48,7 +48,7 @@
       grep = "grep --color=auto";
       sudo = "sudo ";
     };
-    initExtra = builtins.readFile ./zshrc;
+    initContent = builtins.readFile ./zshrc;
   };
 
   programs.tmux = {

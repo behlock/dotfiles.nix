@@ -3,5 +3,6 @@
     "allow": [
       "Bash(nix flake check:*)"
     ]
-  }
+  },
+  "spinnerTipsEnabled": true
 }

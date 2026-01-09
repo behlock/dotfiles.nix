@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  home.username = "behlock";
-  home.homeDirectory = "/home/behlock";
+  home.username = "cookie";
+  home.homeDirectory = "/home/cookie";
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;

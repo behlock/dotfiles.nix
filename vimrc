@@ -228,7 +228,7 @@ noremap <Leader>w :ALEDetail<CR>
 nnoremap <Leader>x :ALENextWrap<CR>
 nnoremap <Leader>dd :ALEGoToDefinition<CR>
 nnoremap <Leader>dt :ALEGoToTypeDefinition<CR>
-nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>f :GFiles<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>m :History<CR>
 nnoremap <silent> <S-left> <Esc>:bp<CR>

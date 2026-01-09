@@ -252,7 +252,6 @@ alias gre='git rebase'
 alias glog='git log --format=%B -n 1 HEAD'
 alias gcomp='nvim -p $(git diff --name-only HEAD~1 HEAD) -c "tabdo :Gdiff HEAD~1"'
 alias gitconf='vi $HOME/PersonalProjects/home-manager/gitconfig'
-alias lg='lazygit'
 
 # Projects
 ## Personal

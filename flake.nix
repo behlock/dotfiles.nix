@@ -52,7 +52,7 @@
       };
 
     # NVIDIA DGX Spark
-    homeConfigurations."behlock@dgx-spark" =
+    homeConfigurations."cookie@dgx-spark" =
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [ ./home-dgx.nix ];
