@@ -1,10 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  isAarch64Darwin = pkgs.stdenv.hostPlatform.system == "aarch64-darwin";
+in {
   home.packages = [
     pkgs.act # run github actions locally
     pkgs.android-tools # android sdk
     pkgs.awscli2 # aws cli
     pkgs.bat # cat clone with syntax highlighting and Git integration
     pkgs.bore-cli # TCP tunnels
+    pkgs.bun # fast JavaScript runtime and bundler
     pkgs.cargo # rust package manager
     pkgs.certbot # Let's Encrypt client
     pkgs.comma # run programs without installing them
@@ -36,6 +40,7 @@
     pkgs.nodePackages.typescript # typed superset of JavaScript
     pkgs.nodePackages.vercel # vercel CLI
     pkgs.nodejs # javaScript runtime
+    pkgs.opencode # AI coding agent for the terminal
     pkgs.openjdk # Java runtime
     pkgs.pipx # install and run python packages in isolated environments
     pkgs.platformio # embedded software utility
@@ -45,7 +50,6 @@
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.pyenv # python version manager
-    pkgs.python313Packages.mlx
     pkgs.python312Packages.nltk # natural language toolkit
     pkgs.python312Packages.pip # python package manager
     pkgs.python312 # Python 3.12
@@ -66,5 +70,7 @@
     pkgs.zsh-syntax-highlighting # syntax highlighting for zsh
     pkgs.zsh-history-substring-search # search through zsh history
     pkgs.zsh-autosuggestions # fish-like autosuggestions for zsh
+  ] ++ pkgs.lib.optionals isAarch64Darwin [
+    pkgs.python313Packages.mlx # Apple Silicon only (requires Metal)
   ];
 }

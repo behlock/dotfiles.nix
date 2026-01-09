@@ -16,10 +16,11 @@
   };
 
   outputs = { nixpkgs, home-manager, nix-index-database, ... }: {
-    defaultPackage = {
-      x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
-      aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
-      armv7l-linux = home-manager.defaultPackage.armv7l-linux;
+    packages = {
+      x86_64-darwin.default = home-manager.packages.x86_64-darwin.default;
+      aarch64-darwin.default = home-manager.packages.aarch64-darwin.default;
+      x86_64-linux.default = home-manager.packages.x86_64-linux.default;
+      armv7l-linux.default = home-manager.packages.armv7l-linux.default;
     };
 
     #  Personal Macbook
@@ -48,6 +49,13 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.armv7l-linux;
         modules = [ ./home-pi.nix ];
+      };
+
+    # NVIDIA DGX Spark
+    homeConfigurations."behlock@dgx-spark" =
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home-dgx.nix ];
       };
     };
 }
