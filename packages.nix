@@ -9,6 +9,7 @@ in {
     pkgs.bore-cli # TCP tunnels
     pkgs.bun # fast JavaScript runtime and bundler
     pkgs.cargo # rust package manager
+    pkgs.clippy # rust linter
     pkgs.claude-code # anthropic cli
     pkgs.certbot # Let's Encrypt client
     pkgs.comma # run programs without installing them
@@ -58,6 +59,7 @@ in {
     pkgs.redis # key-value store
     pkgs.ripgrep # grep alternative
     pkgs.rustc # rust compiler
+    pkgs.rustfmt # rust formatter
     pkgs.sops # editor of encrypted files
     pkgs.supabase-cli # supabase cli
     pkgs.tailspin # log file highlighter
