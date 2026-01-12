@@ -142,7 +142,14 @@ local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 local prompt_normal="φ %{$reset_color%}"
 local prompt_jobs="%{$fg_bold[red]%}φ %{$reset_color%}"
 
-PROMPT='${dir_info}$(git_prompt_info) %(1j.$prompt_jobs.$prompt_normal)'
+# Show hostname when in SSH session
+if [[ -n "$SSH_CONNECTION" ]]; then
+  local ssh_info="%{$fg_bold[red]%}%m%{$reset_color%}:"
+else
+  local ssh_info=""
+fi
+
+PROMPT='${ssh_info}${dir_info}$(git_prompt_info) %(1j.$prompt_jobs.$prompt_normal)'
 
 # Change cursor style depending on vim mode
 function zle-keymap-select {

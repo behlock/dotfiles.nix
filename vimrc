@@ -73,6 +73,9 @@ set laststatus=2
 
 " Gitgutter
 highlight clear SignColumn
+highlight link GitGutterAdd DiffAdd
+highlight link GitGutterChange DiffChange
+highlight link GitGutterDelete DiffDelete
 set signcolumn=yes
 " }}}
 
