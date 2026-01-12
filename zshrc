@@ -134,10 +134,10 @@ function git_prompt_info {
 
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo " %{$fg_bold[white]%}${ref#refs/heads/}$dirstatus%{$reset_color%}"
+  echo " %{$fg_bold[magenta]%}${ref#refs/heads/}$dirstatus%{$reset_color%}"
 }
 
-local dir_info_color="%{$fg_bold[grey]%}"
+local dir_info_color="%{$fg_bold[blue]%}"
 local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 local prompt_normal="φ %{$reset_color%}"
 local prompt_jobs="%{$fg_bold[red]%}φ %{$reset_color%}"
