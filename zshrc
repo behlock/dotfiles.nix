@@ -126,7 +126,7 @@ has_program direnv && eval "$(direnv hook zsh)"
 #########
 function git_prompt_info {
   local dirstatus=" OK"
-  local dirty="%{$fg_bold[yellow]%} X%{$reset_color%}"
+  local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
 
   if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
     dirstatus=$dirty
@@ -282,6 +282,10 @@ alias tf='terraform'
 ## Misc
 alias ytdl='yt-dlp -x -f bestaudio'
 alias ccd='code .'
+# ngrok without colors for light mode compatibility
+function ngrok() {
+  command ngrok "$@" --log stdout --log-format term 2>&1 | cat
+}
 
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"

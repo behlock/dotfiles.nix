@@ -15,6 +15,20 @@ set autowriteall                  " autosave
 
 " Style
 set termguicolors
+
+" Auto-detect terminal background on macOS
+if has('mac') && executable('defaults')
+  let s:mode = system('defaults read -g AppleInterfaceStyle 2>/dev/null')
+  if s:mode =~ 'Dark'
+    set background=dark
+  else
+    set background=light
+  endif
+else
+  set background=dark
+endif
+
+colorscheme gruvbox8              " use gruvbox8 colorscheme
 set number                        " line numbers
 set relativenumber                " and relative ones
 set ruler                         " show the cursor position all the time
@@ -27,7 +41,7 @@ set hidden                        " allow backgrounding buffers without writing 
 " Mouse
 set mouse=a                       " mouse support
 if !has('nvim')
-  set ttymouse=xterm2             " fast
+  set ttymouse=sgr                " better support for nested tmux/SSH
 endif
 set mousehide                     " hide it when we're writing
 
