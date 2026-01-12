@@ -9,6 +9,7 @@ in {
     pkgs.bore-cli # TCP tunnels
     pkgs.bun # fast JavaScript runtime and bundler
     pkgs.cargo # rust package manager
+    pkgs.claude-code # anthropic cli
     pkgs.certbot # Let's Encrypt client
     pkgs.comma # run programs without installing them
     pkgs.docker # need no introduction
