@@ -20,6 +20,7 @@
       x86_64-darwin.default = home-manager.packages.x86_64-darwin.default;
       aarch64-darwin.default = home-manager.packages.aarch64-darwin.default;
       x86_64-linux.default = home-manager.packages.x86_64-linux.default;
+      aarch64-linux.default = home-manager.packages.aarch64-linux.default;
       armv7l-linux.default = home-manager.packages.armv7l-linux.default;
     };
 
@@ -54,7 +55,7 @@
     # NVIDIA DGX Spark
     homeConfigurations."cookie@dgx-spark" =
       home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
         modules = [ ./home-dgx.nix ];
       };
     };
