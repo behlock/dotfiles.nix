@@ -46,6 +46,7 @@ in {
       vim-fugitive
       vim-gitgutter
       vim-gruvbox8
+      modus-themes-nvim
       vim-mundo
       vim-nerdtree-syntax-highlight
       vim-polyglot

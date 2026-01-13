@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(nix flake check:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(defaults read:*)"
     ]
   },
   "spinnerTipsEnabled": true

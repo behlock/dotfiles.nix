@@ -21,14 +21,15 @@ if has('mac') && executable('defaults')
   let s:mode = system('defaults read -g AppleInterfaceStyle 2>/dev/null')
   if s:mode =~ 'Dark'
     set background=dark
+    colorscheme gruvbox8
   else
     set background=light
+    colorscheme modus_operandi
   endif
 else
   set background=dark
+  colorscheme gruvbox8
 endif
-
-colorscheme gruvbox8              " use gruvbox8 colorscheme
 set number                        " line numbers
 set relativenumber                " and relative ones
 set ruler                         " show the cursor position all the time
