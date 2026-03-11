@@ -39,7 +39,6 @@ in {
     # pkgs.nodePackages.prettier # code formatter - conflicts with flutter's LICENSE file
     pkgs.nodePackages.svgo # svg optimizer
     pkgs.nodePackages.typescript # typed superset of JavaScript
-    pkgs.nodePackages.vercel # vercel CLI
     pkgs.nodejs # javaScript runtime
     pkgs.opencode # AI coding agent for the terminal
     pkgs.openjdk # Java runtime
