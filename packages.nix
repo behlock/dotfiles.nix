@@ -65,6 +65,7 @@ in {
     pkgs.texliveFull # full TeX Live distribution
     pkgs.tree # display directory tree
     pkgs.uv # fast python package installer
+    pkgs.wget # download files from the web
     pkgs.yarn # yarn
     pkgs.yt-dlp # download videos from youtube
     pkgs.zsh

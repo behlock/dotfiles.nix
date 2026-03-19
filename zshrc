@@ -262,22 +262,17 @@ alias gitconf='vi $HOME/PersonalProjects/home-manager/gitconfig'
 
 # Projects
 ## Personal
-alias projects='cd $HOME/Projects'
-alias pp='cd $HOME/PersonalProjects'
-alias ep='cd $HOME/ExternalProjects'
+alias projects='cd $HOME/projects'
+alias pp='cd $HOME/personal-projects'
+alias ep='cd $HOME/external-projects'
 alias gopro='cd /Volumes/Go\ Pro/DCIM/100GOPRO && rmmany *.THM *.LRV'
-alias essentials='cd $HOME/Projects/essential-ai'
 
 ## Python
 alias py='python'
 
-## JS
-alias prd='yarn dev'
-alias prb='yarn build'
-alias prl='yarn lint'
+# Obsidian CLI
+alias obsidian="/Applications/Obsidian.app/Contents/MacOS/obsidian"
 
-## Infra
-alias tf='terraform'
 
 ## Misc
 alias ytdl='yt-dlp -x -f bestaudio'
