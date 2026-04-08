@@ -292,5 +292,5 @@ if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-clou
 # NPM global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# Local bin
-PATH=$PATH:$HOME/.local/bin
+# Local bin (prepend so native installs take priority over Nix)
+PATH=$HOME/.local/bin:$PATH
