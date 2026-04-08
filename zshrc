@@ -292,5 +292,8 @@ if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-clou
 # NPM global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
+# Sublime Text
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
 # Local bin (prepend so native installs take priority over Nix)
 PATH=$HOME/.local/bin:$PATH
