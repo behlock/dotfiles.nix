@@ -1,0 +1,46 @@
+{
+    "color_scheme": "rsms-theme/rsms-bright.sublime-color-scheme",
+    "ignored_packages":
+    [
+        "Vintage",
+    ],
+    "neovintageous_build_version": 13200,
+    "index_files": true,
+    "save_on_focus_lost": true,
+    "relative_line_numbers": true,
+    "vintageous_use_super_keys": false,
+    "theme": "rsms-adaptive.sublime-theme",
+    "font_face": "JetBrains Mono",
+    "font_size": 15,
+    "font_options": ["no_calt"],
+    "line_padding_bottom": 1,
+    "line_padding_top": 0,
+    "highlight_line": false,
+    "show_tab_close_buttons": false,
+    "fold_buttons": false,
+
+    // Sidebar behavior
+    "show_definitions": true,
+    "preview_on_click": true,
+
+    // Editor feel
+    "caret_style": "smooth",
+    "margin": 0,
+
+    // Whitespace
+    "trim_trailing_white_space_on_save": "all",
+    "ensure_newline_at_eof_on_save": true,
+
+    // Word wrap
+    "word_wrap": "auto",
+
+    // Tab behavior
+    "translate_tabs_to_spaces": true,
+    "tab_size": 2,
+
+    // Folder exclusions (like VS Code defaults)
+    "folder_exclude_patterns": [".git", "node_modules", "__pycache__", ".next", ".cache"],
+
+    // Sticky scroll (Sublime 4)
+    "sticky_headers": true,
+}

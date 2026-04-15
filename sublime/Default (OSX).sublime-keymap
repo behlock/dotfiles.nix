@@ -1,0 +1,20 @@
+[
+    { "keys": ["super+w"], "command": "close" },
+    { "keys": ["super+b"], "command": "toggle_side_bar" },
+    { "keys": ["super+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    { "keys": ["super+shift+o"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+    { "keys": ["ctrl+g"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
+    { "keys": ["ctrl+`"], "command": "toggle_terminus_panel" },
+    { "keys": ["super+shift+d"], "command": "duplicate_line" },
+    { "keys": ["alt+up"], "command": "swap_line_up" },
+    { "keys": ["alt+down"], "command": "swap_line_down" },
+    { "keys": ["super+alt+up"], "command": "select_lines", "args": {"forward": false} },
+    { "keys": ["super+alt+down"], "command": "select_lines", "args": {"forward": true} },
+    { "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["super+shift+g"], "command": "sublime_merge_open_repo" },
+    { "keys": ["super+alt+b"], "command": "sublime_merge_blame_file" },
+    {
+        "keys": ["super+shift+f"],
+        "command": "find_word_in_files"
+    },
+]

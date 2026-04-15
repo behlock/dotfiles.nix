@@ -1,0 +1,8 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+    "show_inlay_hints": true,
+    "show_diagnostics_severity_level": 1,
+    "diagnostics_highlight_style": "squiggly",
+    "show_code_actions": "bulb",
+    "on_save_and_on_load_restart_timeout": 5
+}
