@@ -1,0 +1,58 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); rm -f \"/tmp/tmux-claude-seen-$s-$w\"; [ \"$a\" = \"1\" ] || printf '#[fg=colour208,bold]' > \"/tmp/tmux-claude-$s-$w\"; }"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); [ \"$a\" = \"1\" ] || [ -e \"/tmp/tmux-claude-seen-$s-$w\" ] || printf '#[fg=green,bold]' > \"/tmp/tmux-claude-$s-$w\"; }"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\a' > /dev/tty; [ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); : > \"/tmp/tmux-claude-$s-$w\"; }"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "figma@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
+  },
+  "promptSuggestionEnabled": false,
+  "theme": "light",
+  "editorMode": "vim",
+  "preferredNotifChannel": "iterm2",
+  "skipAutoPermissionPrompt": true,
+  "permissions": {
+    "defaultMode": "auto"
+  }
+}
