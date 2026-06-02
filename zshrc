@@ -128,13 +128,17 @@ function git_prompt_info {
   local dirstatus=" OK"
   local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
 
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+
   if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
     dirstatus=$dirty
   fi
 
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo " %{$fg_bold[magenta]%}${ref#refs/heads/}$dirstatus%{$reset_color%}"
+  # Name of the current working tree (basename of its top-level dir);
+  # reflects linked `git worktree` checkouts as well as the main repo.
+  local worktree=$(git rev-parse --show-toplevel 2> /dev/null)
+  echo " %B%F{215}${worktree:t}%f%b %{$fg_bold[magenta]%}${ref#refs/heads/}$dirstatus%{$reset_color%}"
 }
 
 local dir_info_color="%{$fg_bold[blue]%}"
