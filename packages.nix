@@ -1,5 +1,20 @@
 { pkgs, ... }:
-let isAarch64Darwin = pkgs.stdenv.hostPlatform.system == "aarch64-darwin";
+let
+  isAarch64Darwin = pkgs.stdenv.hostPlatform.system == "aarch64-darwin";
+
+  # scipy 1.18 fails its own test suite on this nixpkgs revision (a flaky
+  # hypothesis case in stats/tests/test_continuous.py). It reaches us only as a
+  # *test* dependency of threadpoolctl (nltk -> joblib -> threadpoolctl), so
+  # skipping that test suite drops scipy from the graph entirely rather than
+  # building it. Revisit once nixpkgs ships a scipy whose tests pass.
+  python312 = pkgs.python312.override {
+    packageOverrides = _: prev: {
+      threadpoolctl = prev.threadpoolctl.overridePythonAttrs (_: {
+        doCheck = false;
+        nativeCheckInputs = [ ];
+      });
+    };
+  };
 in {
   home.packages = [
     pkgs.act # run github actions locally
@@ -33,12 +48,12 @@ in {
     pkgs.maven # java build tool
     pkgs.mpc # cli for music player daemon
     pkgs.nerd-fonts.jetbrains-mono # patched font with a high number of glyphs
-    pkgs.nixfmt-classic # format nix files
+    pkgs.nixfmt # format nix files
     pkgs.ngrok # tunnel local services to the public internet
-    pkgs.nodePackages_latest.pnpm # fast, disk space efficient package manager
-    # pkgs.nodePackages.prettier # code formatter - conflicts with flutter's LICENSE file
-    pkgs.nodePackages.svgo # svg optimizer
-    pkgs.nodePackages.typescript # typed superset of JavaScript
+    pkgs.pnpm # fast, disk space efficient package manager
+    # pkgs.prettier # code formatter - conflicts with flutter's LICENSE file
+    pkgs.svgo # svg optimizer
+    pkgs.typescript # typed superset of JavaScript
     pkgs.nodejs # javaScript runtime
     pkgs.opencode # AI coding agent for the terminal
     pkgs.openjdk # Java runtime
@@ -50,9 +65,9 @@ in {
     pkgs.postgresql_jit # postgres
     pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
     pkgs.pyenv # python version manager
-    pkgs.python312Packages.nltk # natural language toolkit
-    pkgs.python312Packages.pip # python package manager
-    pkgs.python312 # Python 3.12
+    python312.pkgs.nltk # natural language toolkit
+    python312.pkgs.pip # python package manager
+    python312 # Python 3.12
     pkgs.qpdf # PDF transformation
     pkgs.railway # railway cli
     pkgs.redis # key-value store
