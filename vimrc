@@ -14,29 +14,33 @@ set shortmess+=I                  " disable intro message
 set autowriteall                  " autosave
 
 " Style
-set termguicolors
+" Under vscode-neovim the editor draws its own UI, so none of this applies
+" there — colorscheme, line numbers and the ruler are Cursor's job.
+if !exists('g:vscode')
+  set termguicolors
 
-" Auto-detect terminal background on macOS
-if has('mac') && executable('defaults')
-  let s:mode = system('defaults read -g AppleInterfaceStyle 2>/dev/null')
-  if s:mode =~ 'Dark'
+  " Auto-detect terminal background on macOS
+  if has('mac') && executable('defaults')
+    let s:mode = system('defaults read -g AppleInterfaceStyle 2>/dev/null')
+    if s:mode =~ 'Dark'
+      set background=dark
+      colorscheme gruvbox8
+    else
+      set background=light
+      colorscheme modus_operandi
+    endif
+  else
     set background=dark
     colorscheme gruvbox8
-  else
-    set background=light
-    colorscheme modus_operandi
   endif
-else
-  set background=dark
-  colorscheme gruvbox8
+  set number                        " line numbers
+  set relativenumber                " and relative ones
+  set ruler                         " show the cursor position all the time
+  set nocursorline                  " disable cursor line
+  set showcmd                       " display incomplete commands
+  set novisualbell                  " no flashes
+  set scrolloff=3                   " provide some context when editing
 endif
-set number                        " line numbers
-set relativenumber                " and relative ones
-set ruler                         " show the cursor position all the time
-set nocursorline                  " disable cursor line
-set showcmd                       " display incomplete commands
-set novisualbell                  " no flashes
-set scrolloff=3                   " provide some context when editing
 set hidden                        " allow backgrounding buffers without writing them, and
                                   " remember marks/undo for backgrounded buffers
 " Mouse
@@ -63,14 +67,16 @@ set wildignore+=*.scssc,*.sassc,*.csv,*.pyc,*.xls,*.rbi
 set wildignore+=tmp/**,node_modules/**,bower_components/**
 
 " List chars
-set listchars=""                  " reset the listchars
-" set listchars=tab:▸\ ,eol:¬       " a tab should display as "▸ ", end of lines as "¬"
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " the character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " the character to show in the first column when wrap is
-                                  " off and the line continues beyond the left of the screen
-set fillchars+=vert:\             " set vertical divider to empty space
+if !exists('g:vscode')
+  set listchars=""                  " reset the listchars
+  " set listchars=tab:▸\ ,eol:¬       " a tab should display as "▸ ", end of lines as "¬"
+  set listchars+=trail:.            " show trailing spaces as dots
+  set listchars+=extends:>          " the character to show in the last column when wrap is
+                                    " off and the line continues beyond the right of the screen
+  set listchars+=precedes:<         " the character to show in the first column when wrap is
+                                    " off and the line continues beyond the left of the screen
+  set fillchars+=vert:\             " set vertical divider to empty space
+endif
 
 " Searching
 set hlsearch                      " highlight matches
@@ -83,15 +89,17 @@ set smartcase                     " unless they contain at least one capital let
 set splitright                    " create new horizontal split on the right
 set splitbelow                    " create new vertical split below the current window
 
-" Status line
-set laststatus=2
+" Status line and signs — Cursor renders both itself
+if !exists('g:vscode')
+  set laststatus=2
 
-" Gitgutter
-highlight clear SignColumn
-highlight link GitGutterAdd DiffAdd
-highlight link GitGutterChange DiffChange
-highlight link GitGutterDelete DiffDelete
-set signcolumn=yes
+  " Gitgutter
+  highlight clear SignColumn
+  highlight link GitGutterAdd DiffAdd
+  highlight link GitGutterChange DiffChange
+  highlight link GitGutterDelete DiffDelete
+  set signcolumn=yes
+endif
 " }}}
 
 " FileType settings {{{
@@ -187,24 +195,12 @@ endif
 nnoremap <SPACE> <Nop>
 let mapleader=' '
 
-" Autosave
-inoremap <Esc> <Esc>:w<CR>
-
 " Y u no consistent?
 nnoremap Y y$
 
-" open vimrc and reload it
-nnoremap <Leader>vv :vsplit $HOME/.config/home-manager/vimrc<CR>
-nnoremap <Leader>sv :source $HOME/.config/home-manager/vimrc<CR>
-
-" open NERDTree
-nnoremap <Leader>pp :NERDTreeToggle<CR>
-
-" disable man page for word under cursor
-nnoremap K <Nop>
-
-" clear the search buffer when hitting return
-nnoremap <CR> :nohlsearch<CR>
+" quick escape from insert mode
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " expand %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -212,8 +208,6 @@ nmap <Leader>e :e %%
 
 " easy way to switch between latest files
 nnoremap <Leader><Leader> <C-^>
-nnoremap <Leader>vs :execute "vsplit " . bufname("#")<CR>
-nnoremap <Leader>sp :execute "split " . bufname("#")<CR>
 
 " find merge conflict markers
 nnoremap <silent> <Leader>cf <Esc>/\v^[<=>]{7}( .*\|$)<CR>
@@ -231,32 +225,86 @@ command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
 nnoremap <Leader>kw :KillWhitespace<CR>
 nnoremap <Leader>kcm :KillControlM<CR>
 
-" easy global search
-nnoremap <C-S> :Rg <C-R><C-W><CR>
-vnoremap <C-S> y<Esc>:Rg <C-R>"<CR>
+if exists('g:vscode')
+  " Cursor / VS Code {{{
+  " The fzf / ALE / NERDTree / Mundo / yoink plugins below are terminal-only,
+  " so the same leader keys are routed to the equivalent editor commands.
+  nnoremap <silent> K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+  nnoremap <silent> <Leader>w <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+  nnoremap <silent> <Leader>pp <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
+  nnoremap <silent> <Leader>f <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+  nnoremap <silent> <Leader>b <Cmd>call VSCodeNotify('workbench.action.showAllEditors')<CR>
+  nnoremap <silent> <Leader>m <Cmd>call VSCodeNotify('workbench.action.openRecent')<CR>
+  nnoremap <silent> <Leader>a <Cmd>call VSCodeNotify('workbench.action.findInFiles')<CR>
+  nnoremap <silent> <Leader>x <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
+  nnoremap <silent> <Leader>dd <Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
+  nnoremap <silent> <Leader>dt <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
+  nnoremap <silent> <Leader>vv <Cmd>call VSCodeNotify('workbench.action.openSettingsJson')<CR>
+  nnoremap <silent> <Leader>vs <Cmd>call VSCodeNotify('workbench.action.splitEditor')<CR>
+  nnoremap <silent> <Leader>sp <Cmd>call VSCodeNotify('workbench.action.splitEditorDown')<CR>
+  nnoremap <silent> <S-left> <Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>
+  nnoremap <silent> <S-right> <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
+  nnoremap <silent> <C-S> <Cmd>call VSCodeNotify('workbench.action.findInFiles')<CR>
+  xnoremap <silent> <C-S> <Cmd>call VSCodeNotify('workbench.action.findInFiles')<CR>
 
-" Resize windows
-nnoremap <Leader><Down> :resize -10<CR>
-nnoremap <Leader><Left> :vertical resize +40<CR>
-nnoremap <Leader><Right> :vertical resize -40<CR>
-nnoremap <Leader><Up> :resize +10<CR>
+  " keep VSCodeVim's old visual-mode indent and paste-keeps-register behaviour
+  xnoremap > >gv
+  xnoremap < <gv
+  xnoremap p pgvy
 
-" Plugins {{{
-noremap <Leader>w :ALEDetail<CR>
-nnoremap <Leader>x :ALENextWrap<CR>
-nnoremap <Leader>dd :ALEGoToDefinition<CR>
-nnoremap <Leader>dt :ALEGoToTypeDefinition<CR>
-nnoremap <Leader>f :GFiles<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>m :History<CR>
-nnoremap <silent> <S-left> <Esc>:bp<CR>
-nnoremap <silent> <S-right> <Esc>:bn<CR>
-nnoremap <Leader>a <Esc>:Rg<space>
-nnoremap <Leader>u :MundoToggle<CR>
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-nmap <C-n> <plug>(YoinkPostPasteSwapBack)
-nmap <C-p> <plug>(YoinkPostPasteSwapForward)
+  " clear search highlight — <CR> is left alone here so it can still accept
+  " completions and activate list items in Cursor
+  nnoremap <silent> <Leader>n <Cmd>nohlsearch<CR>
+  " }}}
+else
+  " Terminal nvim {{{
+  " Autosave
+  inoremap <Esc> <Esc>:w<CR>
+
+  " open vimrc and reload it
+  nnoremap <Leader>vv :vsplit $HOME/.config/home-manager/vimrc<CR>
+  nnoremap <Leader>sv :source $HOME/.config/home-manager/vimrc<CR>
+
+  " open NERDTree
+  nnoremap <Leader>pp :NERDTreeToggle<CR>
+
+  " disable man page for word under cursor
+  nnoremap K <Nop>
+
+  " clear the search buffer when hitting return
+  nnoremap <CR> :nohlsearch<CR>
+
+  nnoremap <Leader>vs :execute "vsplit " . bufname("#")<CR>
+  nnoremap <Leader>sp :execute "split " . bufname("#")<CR>
+
+  " easy global search
+  nnoremap <C-S> :Rg <C-R><C-W><CR>
+  vnoremap <C-S> y<Esc>:Rg <C-R>"<CR>
+
+  " Resize windows
+  nnoremap <Leader><Down> :resize -10<CR>
+  nnoremap <Leader><Left> :vertical resize +40<CR>
+  nnoremap <Leader><Right> :vertical resize -40<CR>
+  nnoremap <Leader><Up> :resize +10<CR>
+
+  " Plugins
+  noremap <Leader>w :ALEDetail<CR>
+  nnoremap <Leader>x :ALENextWrap<CR>
+  nnoremap <Leader>dd :ALEGoToDefinition<CR>
+  nnoremap <Leader>dt :ALEGoToTypeDefinition<CR>
+  nnoremap <Leader>f :GFiles<CR>
+  nnoremap <Leader>b :Buffers<CR>
+  nnoremap <Leader>m :History<CR>
+  nnoremap <silent> <S-left> <Esc>:bp<CR>
+  nnoremap <silent> <S-right> <Esc>:bn<CR>
+  nnoremap <Leader>a <Esc>:Rg<space>
+  nnoremap <Leader>u :MundoToggle<CR>
+  nmap p <plug>(YoinkPaste_p)
+  nmap P <plug>(YoinkPaste_P)
+  nmap <C-n> <plug>(YoinkPostPasteSwapBack)
+  nmap <C-p> <plug>(YoinkPostPasteSwapForward)
+  " }}}
+endif
 
 let g:UltiSnipsSnippetDirectories = ['~/.config/home-manager/snippets']
 let g:ale_lint_on_insert_leave = 0
