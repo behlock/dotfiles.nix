@@ -19,12 +19,14 @@ let
       sha256 = "0r8m43lkc1a7n0bkp1xfn9n3n44n8vsdvzz908ma6xg6ihwqlhbs";
     };
   };
-in {
+in
+{
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     withRuby = false;
+    withPython3 = true; # UltiSnips needs the python3 provider
     plugins = with pkgs.vimPlugins; [
       ale
       fzf-vim

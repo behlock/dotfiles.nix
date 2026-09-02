@@ -15,80 +15,90 @@ let
       });
     };
   };
-in {
-  home.packages = [
-    pkgs.act # run github actions locally
-    pkgs.android-tools # android sdk
-    pkgs.awscli2 # aws cli
-    pkgs.bat # cat clone with syntax highlighting and Git integration
-    pkgs.bore-cli # TCP tunnels
-    pkgs.bun # fast JavaScript runtime and bundler
-    pkgs.cargo # rust package manager
-    pkgs.clippy # rust linter
-    pkgs.claude-code # anthropic cli
-    pkgs.certbot # Let's Encrypt client
-    pkgs.comma # run programs without installing them
-    pkgs.docker # need no introduction
-    pkgs.ffmpeg # video and audio converter
-    pkgs.flutter # Google's UI toolkit for building natively compiled applications
-    pkgs.heroku # cloud platform as a service
-    pkgs.ghostscript # postscript interpreter
-    pkgs.git-lfs # git extension for versioning large files
-    pkgs.gh # github cli
-    pkgs.htop # interactive process viewer
-    pkgs.httpie # http client
-    pkgs.ktlint # kotlin linter
-    pkgs.k9s # terminal UI to interact with your Kubernetes clusters
-    pkgs.kubectl # kubernetes cli
-    pkgs.kubectx # switch faster between clusters and namespaces in kubectl
-    pkgs.jless # pager for json files
-    pkgs.jpegoptim # jpeg optimizer
-    pkgs.jq # lightweight and flexible command-line JSON processor
-    pkgs.just # command runner for project-specific tasks
-    pkgs.maven # java build tool
-    pkgs.mpc # cli for music player daemon
-    pkgs.nerd-fonts.jetbrains-mono # patched font with a high number of glyphs
-    pkgs.nixfmt # format nix files
-    pkgs.ngrok # tunnel local services to the public internet
-    pkgs.pnpm # fast, disk space efficient package manager
-    # pkgs.prettier # code formatter - conflicts with flutter's LICENSE file
-    pkgs.svgo # svg optimizer
-    pkgs.typescript # typed superset of JavaScript
-    pkgs.nodejs # javaScript runtime
-    pkgs.opencode # AI coding agent for the terminal
-    pkgs.openjdk # Java runtime
-    pkgs.pipx # install and run python packages in isolated environments
-    pkgs.platformio # embedded software utility
-    pkgs.pngquant # png optimizer
-    pkgs.poetry # python package manager
-    pkgs.portaudio # cross-platform audio I/O library
-    pkgs.postgresql_jit # postgres
-    pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
-    pkgs.pyenv # python version manager
-    python312.pkgs.nltk # natural language toolkit
-    python312.pkgs.pip # python package manager
-    python312 # Python 3.12
-    pkgs.qpdf # PDF transformation
-    pkgs.railway # railway cli
-    pkgs.redis # key-value store
-    pkgs.ripgrep # grep alternative
-    pkgs.rustc # rust compiler
-    pkgs.rustfmt # rust formatter
-    pkgs.sops # editor of encrypted files
-    pkgs.supabase-cli # supabase cli
-    pkgs.tailspin # log file highlighter
-    pkgs.texliveFull # full TeX Live distribution
-    pkgs.tree # display directory tree
-    pkgs.uv # fast python package installer
-    pkgs.wget # download files from the web
-    pkgs.yarn # yarn
-    pkgs.yt-dlp # download videos from youtube
-    pkgs.zsh
-    pkgs.zsh-vi-mode # better vim mode in zsh
-    pkgs.zsh-syntax-highlighting # syntax highlighting for zsh
-    pkgs.zsh-history-substring-search # search through zsh history
-    pkgs.zsh-autosuggestions # fish-like autosuggestions for zsh
-  ] ++ pkgs.lib.optionals isAarch64Darwin [
-    pkgs.python313Packages.mlx # Apple Silicon only (requires Metal)
-  ];
+
+  # One Python environment so the libraries are actually importable from the
+  # installed interpreter (separate profile entries are not on sys.path).
+  python = python312.withPackages (
+    ps:
+    [
+      ps.nltk # natural language toolkit
+      ps.pip # python package manager
+    ]
+    ++ pkgs.lib.optionals isAarch64Darwin [
+      ps.mlx # Apple Silicon only (requires Metal)
+    ]
+  );
+in
+{
+  # Drop anything nixpkgs does not provide for this platform (e.g. bun,
+  # claude-code, flutter, ngrok and opencode have no armv7l build for the Pi)
+  # so one list can serve every machine.
+  home.packages =
+    builtins.filter (pkgs.lib.meta.availableOn pkgs.stdenv.hostPlatform)
+      [
+        pkgs.act # run github actions locally
+        pkgs.android-tools # android sdk
+        pkgs.awscli2 # aws cli
+        pkgs.bat # cat clone with syntax highlighting and Git integration
+        pkgs.bore-cli # TCP tunnels
+        pkgs.bun # fast JavaScript runtime and bundler
+        pkgs.cargo # rust package manager
+        pkgs.certbot # Let's Encrypt client
+        pkgs.claude-code # anthropic cli
+        pkgs.clippy # rust linter
+        pkgs.docker # need no introduction
+        pkgs.fd # find alternative (used by the fzf directory widget)
+        pkgs.ffmpeg # video and audio converter
+        pkgs.flutter # Google's UI toolkit for building natively compiled applications
+        pkgs.gh # github cli
+        pkgs.ghostscript # postscript interpreter
+        pkgs.git-lfs # git extension for versioning large files
+        pkgs.heroku # cloud platform as a service
+        pkgs.htop # interactive process viewer
+        pkgs.httpie # http client
+        pkgs.jless # pager for json files
+        pkgs.jpegoptim # jpeg optimizer
+        pkgs.jq # lightweight and flexible command-line JSON processor
+        pkgs.just # command runner for project-specific tasks
+        pkgs.k9s # terminal UI to interact with your Kubernetes clusters
+        pkgs.ktlint # kotlin linter
+        pkgs.kubectl # kubernetes cli
+        pkgs.kubectx # switch faster between clusters and namespaces in kubectl
+        pkgs.maven # java build tool
+        pkgs.mpc # cli for music player daemon
+        pkgs.nerd-fonts.jetbrains-mono # patched font with a high number of glyphs
+        pkgs.ngrok # tunnel local services to the public internet
+        pkgs.nixfmt # format nix files
+        pkgs.nodejs # javaScript runtime
+        pkgs.opencode # AI coding agent for the terminal
+        pkgs.openjdk # Java runtime
+        pkgs.pipx # install and run python packages in isolated environments
+        pkgs.platformio # embedded software utility
+        pkgs.pngquant # png optimizer
+        pkgs.pnpm # fast, disk space efficient package manager
+        pkgs.poetry # python package manager
+        pkgs.portaudio # cross-platform audio I/O library
+        pkgs.postgresql_jit # postgres
+        pkgs.pre-commit # framework for managing and maintaining multi-language pre-commit hooks
+        # pkgs.prettier # code formatter - conflicts with flutter's LICENSE file
+        pkgs.pyenv # python version manager
+        python # Python 3.12 with nltk, pip (and mlx on Apple Silicon)
+        pkgs.qpdf # PDF transformation
+        pkgs.railway # railway cli
+        pkgs.redis # key-value store
+        pkgs.ripgrep # grep alternative
+        pkgs.rustc # rust compiler
+        pkgs.rustfmt # rust formatter
+        pkgs.sops # editor of encrypted files
+        pkgs.supabase-cli # supabase cli
+        pkgs.svgo # svg optimizer
+        pkgs.tailspin # log file highlighter
+        pkgs.texliveFull # full TeX Live distribution
+        pkgs.tree # display directory tree
+        pkgs.typescript # typed superset of JavaScript
+        pkgs.uv # fast python package installer
+        pkgs.wget # download files from the web
+        pkgs.yarn # yarn
+        pkgs.yt-dlp # download videos from youtube
+      ];
 }

@@ -15,48 +15,44 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nix-index-database, ... }: {
-    packages = {
-      x86_64-darwin.default = home-manager.packages.x86_64-darwin.default;
-      aarch64-darwin.default = home-manager.packages.aarch64-darwin.default;
-      x86_64-linux.default = home-manager.packages.x86_64-linux.default;
-      aarch64-linux.default = home-manager.packages.aarch64-linux.default;
-      armv7l-linux.default = home-manager.packages.armv7l-linux.default;
-    };
-
-    #  Personal Macbook
-    homeConfigurations."wbehlock" =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [ ./home-wbehlock.nix ];
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      nix-index-database,
+      ...
+    }:
+    let
+      mkHome =
+        system: module:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            nix-index-database.homeModules.nix-index
+            module
+          ];
+        };
+    in
+    {
+      packages = {
+        x86_64-darwin.default = home-manager.packages.x86_64-darwin.default;
+        aarch64-darwin.default = home-manager.packages.aarch64-darwin.default;
+        x86_64-linux.default = home-manager.packages.x86_64-linux.default;
+        aarch64-linux.default = home-manager.packages.aarch64-linux.default;
+        armv7l-linux.default = home-manager.packages.armv7l-linux.default;
       };
 
-    # Mac Mini
-    homeConfigurations."behlock" =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [ ./home-behlock.nix ];
-      };
-
-    # Work Macbook
-    homeConfigurations."wbehlock@Walids-MBP" =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [ ./home-wbehlock.nix ];
-      };
-
-    # Raspberry Pi
-    homeConfigurations."pi" =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.armv7l-linux;
-        modules = [ ./home-pi.nix ];
-      };
-
-    # NVIDIA DGX Spark
-    homeConfigurations."cookie@dgx-spark" =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
-        modules = [ ./home-dgx.nix ];
+      homeConfigurations = {
+        # Personal Macbook
+        "wbehlock" = mkHome "aarch64-darwin" ./home-wbehlock.nix;
+        # Work Macbook
+        "wbehlock@Walids-MBP" = mkHome "aarch64-darwin" ./home-wbehlock.nix;
+        # Mac Mini
+        "behlock" = mkHome "aarch64-darwin" ./home-behlock.nix;
+        # Raspberry Pi
+        "pi" = mkHome "armv7l-linux" ./home-pi.nix;
+        # NVIDIA DGX Spark
+        "cookie@dgx-spark" = mkHome "aarch64-linux" ./home-dgx.nix;
       };
     };
 }

@@ -7,5 +7,3 @@ export XDG_DATA_DIRS="$HOME/.nix-profile/share:${XDG_DATA_DIRS:-/usr/local/share
 if [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
   . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
-
-. "$HOME/.nix-profile/share/git/contrib/completion/git-prompt.sh"

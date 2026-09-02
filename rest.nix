@@ -1,15 +1,17 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  fzfFiles = "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
+  fzfDirs = "fd --type d --hidden --follow --exclude .git --exclude vendor";
+in
+{
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand =
-      "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
-    fileWidgetCommand =
-      "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
-    changeDirWidgetCommand =
-      "rg --files --hidden --follow --glob '!.git/*' --glob '!vendor/*'";
+    defaultCommand = fzfFiles;
+    fileWidget.command = fzfFiles;
+    changeDirWidget.command = fzfDirs;
     defaultOptions = [ "-m --bind ctrl-a:select-all,ctrl-d:deselect-all" ];
-    tmux = { enableShellIntegration = true; };
+    tmux.enableShellIntegration = true;
   };
 
   programs.zsh = {
@@ -30,18 +32,16 @@
     };
     profileExtra = builtins.readFile ./profile;
     sessionVariables = {
-      PROMPT_COMMAND = "echo";
       EDITOR = "nvim";
       GIT_EDITOR = "nvim";
       ERL_AFLAGS = "-kernel shell_history enabled";
       SHELL = "${pkgs.zsh}/bin/zsh";
       BAT_THEME = "OneHalfDark";
-      KEYTIMEOUT =
-        1; # Reduce delay for key combinations in order to change to vi mode faster
+      KEYTIMEOUT = 1; # Reduce delay for key combinations in order to change to vi mode faster
     };
+    # `ls`, `ll`, `lt`, `lla` come from programs.eza
     shellAliases = {
-      ls = "exa -F";
-      la = "exa -la";
+      la = "eza -la";
       rm = "rm -i";
       mv = "mv -i";
       cp = "cp -i";
@@ -51,9 +51,23 @@
     initContent = builtins.readFile ./zshrc;
   };
 
+  programs.eza = {
+    enable = true;
+    # Recent eza takes an optional value for -F/--classify, so a bare `-F`
+    # swallows the next argument (`ls dir` broke). Be explicit.
+    extraOptions = [ "--classify=auto" ];
+  };
+
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
+    shortcut = "a";
+    keyMode = "vi";
+    mouse = true;
+    focusEvents = true;
+    baseIndex = 1;
+    escapeTime = 10;
+    historyLimit = 102400;
     secureSocket = false;
     disableConfirmationPrompt = true;
     plugins = with pkgs.tmuxPlugins; [
@@ -73,8 +87,6 @@
     enable = true;
     enableZshIntegration = true;
   };
-
-  programs.eza = { enable = true; };
 
   home.file.".inputrc".source = ./inputrc;
 }

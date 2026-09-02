@@ -1,4 +1,11 @@
 {
+  "env": {
+    "CLAUDE_CODE_NO_FLICKER": "1"
+  },
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "claude-fable-5-1[1m]",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -6,7 +13,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); rm -f \"/tmp/tmux-claude-seen-$s-$w\"; [ \"$a\" = \"1\" ] || printf '#[fg=colour208,bold]' > \"/tmp/tmux-claude-$s-$w\"; }"
+            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); rm -f \"/tmp/tmux-claude-seen-$s-$w\"; [ \"$a\" = \"1\" ] || printf '#[fg=colour208,bold]' > \"/tmp/tmux-claude-$s-$w\"; }; exit 0"
           }
         ]
       }
@@ -17,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); [ \"$a\" = \"1\" ] || [ -e \"/tmp/tmux-claude-seen-$s-$w\" ] || printf '#[fg=green,bold]' > \"/tmp/tmux-claude-$s-$w\"; }"
+            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); [ \"$a\" = \"1\" ] || [ -e \"/tmp/tmux-claude-seen-$s-$w\" ] || printf '#[fg=green,bold]' > \"/tmp/tmux-claude-$s-$w\"; }; exit 0"
           }
         ]
       }
@@ -28,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a' > /dev/tty; [ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); : > \"/tmp/tmux-claude-$s-$w\"; }"
+            "command": "{ printf '\\a' > /dev/tty; } 2>/dev/null; [ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); : > \"/tmp/tmux-claude-$s-$w\"; }; exit 0"
           }
         ]
       }
@@ -47,12 +54,11 @@
     "swift-lsp@claude-plugins-official": true,
     "vercel@claude-plugins-official": true
   },
+  "effortLevel": "high",
   "promptSuggestionEnabled": false,
-  "theme": "light",
+  "theme": "auto",
   "editorMode": "vim",
   "preferredNotifChannel": "iterm2",
-  "skipAutoPermissionPrompt": true,
-  "permissions": {
-    "defaultMode": "auto"
-  }
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }

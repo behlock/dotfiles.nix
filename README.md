@@ -1,6 +1,6 @@
 # Dotfiles.nix
 
-Dotfiles, powered by [Nix](https://nixos.org/nix/) and [home-manager](https://github.com/rycee/home-manager).
+Dotfiles, powered by [Nix](https://nixos.org/nix/) and [home-manager](https://github.com/nix-community/home-manager).
 
 ## How to use
 
@@ -42,3 +42,22 @@ Dotfiles, powered by [Nix](https://nixos.org/nix/) and [home-manager](https://gi
    ```bash
    nix flake update && home-manager switch
    ```
+
+## Hosts
+
+Each `home-<host>.nix` sets only the username and `stateVersion`; everything
+else is shared through `common.nix`. Activate with `home-manager switch`
+(picks `<user>@<hostname>`, then `<user>`) or `home-manager switch --flake .#<name>`.
+
+| Name                | Machine           | System         |
+| ------------------- | ----------------- | -------------- |
+| `wbehlock`          | Personal MacBook  | aarch64-darwin |
+| `wbehlock@Walids-MBP` | Work MacBook    | aarch64-darwin |
+| `behlock`           | Mac Mini          | aarch64-darwin |
+| `cookie@dgx-spark`  | NVIDIA DGX Spark  | aarch64-linux  |
+| `pi`                | Raspberry Pi      | armv7l-linux   |
+
+Note: the `pi` configuration does not currently evaluate on nixpkgs-unstable.
+armv7l has no binary cache and several shared packages (JDK, GHC-based tools
+such as `nixfmt`, `ffmpeg`, `texliveFull`, `uv`, even `eza`) fail to evaluate
+there. It needs its own trimmed package list before it can be used again.

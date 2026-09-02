@@ -118,9 +118,6 @@ export LESS_TERMCAP_so=$'\E[01;44;93m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;92m'
 
-## Load direnv
-has_program direnv && eval "$(direnv hook zsh)"
-
 #########
 # PROMPT
 #########
@@ -179,8 +176,7 @@ precmd_functions+=(_fix_cursor)
 #############
 # COMPLETION
 #############
-autoload -Uz compinit
-
+# compinit itself is run by home-manager (programs.zsh.enableCompletion)
 unsetopt menu_complete
 unsetopt flowcontrol
 setopt auto_menu
@@ -245,7 +241,7 @@ alias tmn='tmux new -s'
 alias tmuxconf='vi $HOME/.config/home-manager/tmux.conf'
 
 # SSH
-alias sshconf='vi $HOME/PersonalProjects/dotfiles/sshconfig'
+alias sshconf='vi $HOME/.ssh/config'
 
 # Git
 alias gch='git checkout'
@@ -262,7 +258,7 @@ alias gsp='git stash pop'
 alias gre='git rebase'
 alias glog='git log --format=%B -n 1 HEAD'
 alias gcomp='nvim -p $(git diff --name-only HEAD~1 HEAD) -c "tabdo :Gdiff HEAD~1"'
-alias gitconf='vi $HOME/PersonalProjects/home-manager/gitconfig'
+alias gitconf='vi $HOME/.config/home-manager/git.nix'
 
 # Projects
 ## Personal
@@ -286,18 +282,20 @@ function ngrok() {
   command ngrok "$@" --log stdout --log-format term 2>&1 | cat
 }
 
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew (macOS only)
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # GCloud SDK
-if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
+safe_source "$HOME/google-cloud-sdk/path.zsh.inc"
+safe_source "$HOME/google-cloud-sdk/completion.zsh.inc"
 
 # NPM global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# Sublime Text
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+# Sublime Text (macOS only)
+[ -d "/Applications/Sublime Text.app" ] && export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 # Local bin (prepend so native installs take priority over Nix)
 PATH=$HOME/.local/bin:$PATH
