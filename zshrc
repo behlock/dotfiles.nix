@@ -291,6 +291,11 @@ fi
 safe_source "$HOME/google-cloud-sdk/path.zsh.inc"
 safe_source "$HOME/google-cloud-sdk/completion.zsh.inc"
 
+# Docker Desktop credential helpers (macOS only)
+if [[ "$OSTYPE" == darwin* && -d "$HOME/.docker/bin" ]]; then
+  export PATH="$PATH:$HOME/.docker/bin"
+fi
+
 # NPM global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
