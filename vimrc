@@ -274,8 +274,8 @@ else
   " clear the search buffer when hitting return
   nnoremap <CR> :nohlsearch<CR>
 
-  nnoremap <Leader>vs :execute "vsplit " . bufname("#")<CR>
-  nnoremap <Leader>sp :execute "split " . bufname("#")<CR>
+  nnoremap <Leader>vs :execute "vsplit " . fnameescape(bufname("#"))<CR>
+  nnoremap <Leader>sp :execute "split " . fnameescape(bufname("#"))<CR>
 
   " easy global search
   nnoremap <C-S> :Rg <C-R><C-W><CR>

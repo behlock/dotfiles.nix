@@ -13,7 +13,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); rm -f \"/tmp/tmux-claude-seen-$s-$w\"; [ \"$a\" = \"1\" ] || printf '#[fg=colour208,bold]' > \"/tmp/tmux-claude-$s-$w\"; }; exit 0"
+            "command": "[ -n \"$TMUX\" ] && { tmux set-option -w -u -t \"$TMUX_PANE\" @claude-seen; a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); style=; [ \"$a\" = \"1\" ] || style='#[fg=colour208,bold]'; tmux set-option -w -t \"$TMUX_PANE\" @claude-status \"$style\"; }; exit 0"
           }
         ]
       }
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); [ \"$a\" = \"1\" ] || [ -e \"/tmp/tmux-claude-seen-$s-$w\" ] || printf '#[fg=green,bold]' > \"/tmp/tmux-claude-$s-$w\"; }; exit 0"
+            "command": "[ -n \"$TMUX\" ] && { a=$(tmux display -p -t \"$TMUX_PANE\" '#{window_active}'); seen=$(tmux show-options -w -v -t \"$TMUX_PANE\" @claude-seen 2>/dev/null); [ \"$a\" = \"1\" ] || [ \"$seen\" = \"1\" ] || tmux set-option -w -t \"$TMUX_PANE\" @claude-status '#[fg=green,bold]'; }; exit 0"
           }
         ]
       }
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{ printf '\\a' > /dev/tty; } 2>/dev/null; [ -n \"$TMUX\" ] && { s=$(tmux display -p -t \"$TMUX_PANE\" '#S'); w=$(tmux display -p -t \"$TMUX_PANE\" '#I'); : > \"/tmp/tmux-claude-$s-$w\"; }; exit 0"
+            "command": "{ printf '\\a' > /dev/tty; } 2>/dev/null; [ -n \"$TMUX\" ] && tmux set-option -w -u -t \"$TMUX_PANE\" @claude-status; exit 0"
           }
         ]
       }

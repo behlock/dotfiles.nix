@@ -78,7 +78,7 @@ function mkcd {
 function rmmany() {
   for file in "$@"
     do
-      rm -rf "$file" 2> /dev/null
+      rm -rf -- "$file" 2> /dev/null
     done
 }
 
@@ -257,7 +257,13 @@ alias gs='git stash'
 alias gsp='git stash pop'
 alias gre='git rebase'
 alias glog='git log --format=%B -n 1 HEAD'
-alias gcomp='nvim -p $(git diff --name-only HEAD~1 HEAD) -c "tabdo :Gdiff HEAD~1"'
+# Split on NULs and end option parsing so filenames stay literal.
+function gcomp {
+  local -a files
+  files=(${(0)"$(git diff --name-only --diff-filter=d -z HEAD~1 HEAD --)"}) || return
+  (( ${#files} )) || return 0
+  nvim -p -c 'tabdo Gdiff HEAD~1' -- "${files[@]}"
+}
 alias gitconf='vi $HOME/.config/home-manager/git.nix'
 
 # Projects
